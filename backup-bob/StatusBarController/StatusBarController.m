@@ -47,7 +47,6 @@
     [[menu addItemWithTitle:@"Backup now" action:@selector(backupNowClicked:) keyEquivalent:@""] setTarget:self];
     [menu addItem:[NSMenuItem separatorItem]];
     [menu addItemWithTitle:@"Quit" action:@selector(terminate:) keyEquivalent:@""];
-
     self.statusItem.menu = menu;
 }
 
