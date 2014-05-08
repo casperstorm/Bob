@@ -3,39 +3,68 @@
 //  backup-bob
 //
 //  Created by Casper Storm Larsen on 08/05/14.
+//  Copyright (c) 2014 Shape A/S. All rights reserved.
 //
 
 #import "AppDelegate.h"
 @interface AppDelegate ()
-@property (strong, nonatomic) NSStatusItem *statusItem;
+@property (nonatomic, strong) NSStatusItem *statusItem;
+@property (nonatomic, strong) NSMenuItem *lastBackupMenuItem;
+@property (nonatomic, strong) NSMenuItem *nextBackupMenuItem;
 @end
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
-{
+{    
     [self setupStatusItem];
     [self setupMenu];
+
+    [self setupBindings];
 }
+
+- (void)setupBindings
+{
+
+}
+
 - (void)setupStatusItem
 {
     self.statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
     self.statusItem.title = @"Bob";
     self.statusItem.highlightMode = YES;
-
-// The image that will be shown in the menu bar, a 16x16 black png works best
-//    self.statusItem.image = [NSImage imageNamed:@"status_bar_test.png"];
-//    self.statusItem.alternateImage = [NSImage imageNamed:@"status_bar_test.png"];
 }
 
 - (void)setupMenu
 {
     NSMenu *menu = [NSMenu new];
-    [menu addItemWithTitle:@"Something" action:@selector(something:) keyEquivalent:@""];
-    [menu addItemWithTitle:@"Something else" action:@selector(something:) keyEquivalent:@""];
-    [menu addItemWithTitle:@"Something something" action:@selector(something:) keyEquivalent:@""];
+
+    [menu addItem:self.lastBackupMenuItem];
+    [menu addItem:self.nextBackupMenuItem];
     [menu addItem:[NSMenuItem separatorItem]];
-    [menu addItemWithTitle:@"Quit Backup Bob" action:@selector(terminate:) keyEquivalent:@""];
+    [menu addItemWithTitle:@"Quit" action:@selector(terminate:) keyEquivalent:@""];
     self.statusItem.menu = menu;
+}
+
+#pragma mark - Properties
+
+- (NSMenuItem *)lastBackupMenuItem
+{
+    if (!_lastBackupMenuItem) {
+        _lastBackupMenuItem = [NSMenuItem new];
+        _lastBackupMenuItem.title = @"Last backup:";
+    }
+
+    return _lastBackupMenuItem;
+}
+
+- (NSMenuItem *)nextBackupMenuItem
+{
+    if (!_nextBackupMenuItem) {
+        _nextBackupMenuItem = [NSMenuItem new];
+        _nextBackupMenuItem.title = @"Next backup:";
+    }
+
+    return _nextBackupMenuItem;
 }
 
 
