@@ -7,5 +7,5 @@
 #import <Foundation/Foundation.h>
 
 
-@interface TarsnapClient : NSObject
+@interface StatusBarController : NSObject
 @end
