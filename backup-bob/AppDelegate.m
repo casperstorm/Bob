@@ -18,6 +18,21 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     self.statusBarController = [StatusBarController new];
+
+    TarsnapClient *tarsnapClient = [TarsnapClient new];
+    RACSignal *signal = [tarsnapClient startBackup];
+
+    [signal subscribeNext:^(id x) {
+        NSLog(@"Next: %@", x);
+    }];
+
+    [signal subscribeError:^(NSError *error) {
+        NSLog(@"Error: %@", [error localizedDescription]);
+    }];
+
+    [signal subscribeCompleted:^{
+        NSLog(@"Done");
+    }];
 }
 
 @end

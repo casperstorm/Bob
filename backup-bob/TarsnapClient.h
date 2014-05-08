@@ -8,4 +8,5 @@
 
 
 @interface TarsnapClient : NSObject
+- (RACSignal *)startBackup;
 @end
