@@ -1,0 +1,478 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		02574DAF191BCB8F006379C1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02574DAE191BCB8F006379C1 /* Cocoa.framework */; };
+		02574DB9191BCB8F006379C1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 02574DB7191BCB8F006379C1 /* InfoPlist.strings */; };
+		02574DBB191BCB8F006379C1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 02574DBA191BCB8F006379C1 /* main.m */; };
+		02574DBF191BCB8F006379C1 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 02574DBD191BCB8F006379C1 /* Credits.rtf */; };
+		02574DC2191BCB8F006379C1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 02574DC1191BCB8F006379C1 /* AppDelegate.m */; };
+		02574DC7191BCB8F006379C1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02574DC6191BCB8F006379C1 /* Images.xcassets */; };
+		02574DCE191BCB8F006379C1 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02574DCD191BCB8F006379C1 /* XCTest.framework */; };
+		02574DCF191BCB8F006379C1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02574DAE191BCB8F006379C1 /* Cocoa.framework */; };
+		02574DD7191BCB8F006379C1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 02574DD5191BCB8F006379C1 /* InfoPlist.strings */; };
+		02574DD9191BCB8F006379C1 /* backup_bobTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 02574DD8191BCB8F006379C1 /* backup_bobTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		02574DD0191BCB8F006379C1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 02574DA3191BCB8F006379C1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 02574DAA191BCB8F006379C1;
+			remoteInfo = "backup-bob";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		02574DAB191BCB8F006379C1 /* backup-bob.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "backup-bob.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		02574DAE191BCB8F006379C1 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		02574DB1191BCB8F006379C1 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		02574DB2191BCB8F006379C1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		02574DB3191BCB8F006379C1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		02574DB6191BCB8F006379C1 /* backup-bob-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "backup-bob-Info.plist"; sourceTree = "<group>"; };
+		02574DB8191BCB8F006379C1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		02574DBA191BCB8F006379C1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		02574DBC191BCB8F006379C1 /* backup-bob-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "backup-bob-Prefix.pch"; sourceTree = "<group>"; };
+		02574DBE191BCB8F006379C1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		02574DC0191BCB8F006379C1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		02574DC1191BCB8F006379C1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		02574DC6191BCB8F006379C1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		02574DCC191BCB8F006379C1 /* backup-bobTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "backup-bobTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		02574DCD191BCB8F006379C1 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		02574DD4191BCB8F006379C1 /* backup-bobTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "backup-bobTests-Info.plist"; sourceTree = "<group>"; };
+		02574DD6191BCB8F006379C1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		02574DD8191BCB8F006379C1 /* backup_bobTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = backup_bobTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		02574DA8191BCB8F006379C1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				02574DAF191BCB8F006379C1 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		02574DC9191BCB8F006379C1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				02574DCF191BCB8F006379C1 /* Cocoa.framework in Frameworks */,
+				02574DCE191BCB8F006379C1 /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		02574DA2191BCB8F006379C1 = {
+			isa = PBXGroup;
+			children = (
+				02574DB4191BCB8F006379C1 /* backup-bob */,
+				02574DD2191BCB8F006379C1 /* backup-bobTests */,
+				02574DAD191BCB8F006379C1 /* Frameworks */,
+				02574DAC191BCB8F006379C1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		02574DAC191BCB8F006379C1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				02574DAB191BCB8F006379C1 /* backup-bob.app */,
+				02574DCC191BCB8F006379C1 /* backup-bobTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		02574DAD191BCB8F006379C1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				02574DAE191BCB8F006379C1 /* Cocoa.framework */,
+				02574DCD191BCB8F006379C1 /* XCTest.framework */,
+				02574DB0191BCB8F006379C1 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		02574DB0191BCB8F006379C1 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				02574DB1191BCB8F006379C1 /* AppKit.framework */,
+				02574DB2191BCB8F006379C1 /* CoreData.framework */,
+				02574DB3191BCB8F006379C1 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		02574DB4191BCB8F006379C1 /* backup-bob */ = {
+			isa = PBXGroup;
+			children = (
+				02574DC0191BCB8F006379C1 /* AppDelegate.h */,
+				02574DC1191BCB8F006379C1 /* AppDelegate.m */,
+				02574DC6191BCB8F006379C1 /* Images.xcassets */,
+				02574DB5191BCB8F006379C1 /* Supporting Files */,
+				AF7AB191D89949EDEFF0873A /* UI */,
+			);
+			path = "backup-bob";
+			sourceTree = "<group>";
+		};
+		02574DB5191BCB8F006379C1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				02574DB6191BCB8F006379C1 /* backup-bob-Info.plist */,
+				02574DB7191BCB8F006379C1 /* InfoPlist.strings */,
+				02574DBA191BCB8F006379C1 /* main.m */,
+				02574DBC191BCB8F006379C1 /* backup-bob-Prefix.pch */,
+				02574DBD191BCB8F006379C1 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		02574DD2191BCB8F006379C1 /* backup-bobTests */ = {
+			isa = PBXGroup;
+			children = (
+				02574DD8191BCB8F006379C1 /* backup_bobTests.m */,
+				02574DD3191BCB8F006379C1 /* Supporting Files */,
+			);
+			path = "backup-bobTests";
+			sourceTree = "<group>";
+		};
+		02574DD3191BCB8F006379C1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				02574DD4191BCB8F006379C1 /* backup-bobTests-Info.plist */,
+				02574DD5191BCB8F006379C1 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AF7AB191D89949EDEFF0873A /* UI */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UI;
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		02574DAA191BCB8F006379C1 /* backup-bob */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 02574DDC191BCB8F006379C1 /* Build configuration list for PBXNativeTarget "backup-bob" */;
+			buildPhases = (
+				02574DA7191BCB8F006379C1 /* Sources */,
+				02574DA8191BCB8F006379C1 /* Frameworks */,
+				02574DA9191BCB8F006379C1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "backup-bob";
+			productName = "backup-bob";
+			productReference = 02574DAB191BCB8F006379C1 /* backup-bob.app */;
+			productType = "com.apple.product-type.application";
+		};
+		02574DCB191BCB8F006379C1 /* backup-bobTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 02574DDF191BCB8F006379C1 /* Build configuration list for PBXNativeTarget "backup-bobTests" */;
+			buildPhases = (
+				02574DC8191BCB8F006379C1 /* Sources */,
+				02574DC9191BCB8F006379C1 /* Frameworks */,
+				02574DCA191BCB8F006379C1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				02574DD1191BCB8F006379C1 /* PBXTargetDependency */,
+			);
+			name = "backup-bobTests";
+			productName = "backup-bobTests";
+			productReference = 02574DCC191BCB8F006379C1 /* backup-bobTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		02574DA3191BCB8F006379C1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				TargetAttributes = {
+					02574DCB191BCB8F006379C1 = {
+						TestTargetID = 02574DAA191BCB8F006379C1;
+					};
+				};
+			};
+			buildConfigurationList = 02574DA6191BCB8F006379C1 /* Build configuration list for PBXProject "backup-bob" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 02574DA2191BCB8F006379C1;
+			productRefGroup = 02574DAC191BCB8F006379C1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				02574DAA191BCB8F006379C1 /* backup-bob */,
+				02574DCB191BCB8F006379C1 /* backup-bobTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		02574DA9191BCB8F006379C1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				02574DB9191BCB8F006379C1 /* InfoPlist.strings in Resources */,
+				02574DC7191BCB8F006379C1 /* Images.xcassets in Resources */,
+				02574DBF191BCB8F006379C1 /* Credits.rtf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		02574DCA191BCB8F006379C1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				02574DD7191BCB8F006379C1 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		02574DA7191BCB8F006379C1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				02574DC2191BCB8F006379C1 /* AppDelegate.m in Sources */,
+				02574DBB191BCB8F006379C1 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		02574DC8191BCB8F006379C1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				02574DD9191BCB8F006379C1 /* backup_bobTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		02574DD1191BCB8F006379C1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 02574DAA191BCB8F006379C1 /* backup-bob */;
+			targetProxy = 02574DD0191BCB8F006379C1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		02574DB7191BCB8F006379C1 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				02574DB8191BCB8F006379C1 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		02574DBD191BCB8F006379C1 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				02574DBE191BCB8F006379C1 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		02574DD5191BCB8F006379C1 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				02574DD6191BCB8F006379C1 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		02574DDA191BCB8F006379C1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		02574DDB191BCB8F006379C1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		02574DDD191BCB8F006379C1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "backup-bob/backup-bob-Prefix.pch";
+				INFOPLIST_FILE = "backup-bob/backup-bob-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		02574DDE191BCB8F006379C1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "backup-bob/backup-bob-Prefix.pch";
+				INFOPLIST_FILE = "backup-bob/backup-bob-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		02574DE0191BCB8F006379C1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/backup-bob.app/Contents/MacOS/backup-bob";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "backup-bob/backup-bob-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "backup-bobTests/backup-bobTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		02574DE1191BCB8F006379C1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/backup-bob.app/Contents/MacOS/backup-bob";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "backup-bob/backup-bob-Prefix.pch";
+				INFOPLIST_FILE = "backup-bobTests/backup-bobTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		02574DA6191BCB8F006379C1 /* Build configuration list for PBXProject "backup-bob" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				02574DDA191BCB8F006379C1 /* Debug */,
+				02574DDB191BCB8F006379C1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		02574DDC191BCB8F006379C1 /* Build configuration list for PBXNativeTarget "backup-bob" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				02574DDD191BCB8F006379C1 /* Debug */,
+				02574DDE191BCB8F006379C1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		02574DDF191BCB8F006379C1 /* Build configuration list for PBXNativeTarget "backup-bobTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				02574DE0191BCB8F006379C1 /* Debug */,
+				02574DE1191BCB8F006379C1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 02574DA3191BCB8F006379C1 /* Project object */;
+}
