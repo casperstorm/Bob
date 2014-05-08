@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "TarsnapClient.h"
 #import "StatusBarController.h"
+#import "BackupModel.h"
 
 @interface AppDelegate ()
 @property (nonatomic, strong) StatusBarController *statusBarController;
@@ -18,6 +19,7 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     self.statusBarController = [StatusBarController new];
+    [BackupModel sharedInstance];
 }
 
 @end
