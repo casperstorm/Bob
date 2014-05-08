@@ -4,22 +4,20 @@
 //
 
 
-#import "TarsnapClient.h"
-#import "NSDate+TimeAgo.h"
+#import "StatusBarViewModel.h"
 
-@interface TarsnapClient ()
+@interface StatusBarViewModel ()
 @property (nonatomic, strong) NSString *nextBackupString;
 @property (nonatomic, strong) NSString *lastBackupString;
 @end
-@implementation TarsnapClient
+@implementation StatusBarViewModel
 
 - (id)init
 {
     if (!(self = [super init])) return nil;
 
-//    NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:0];
-//    NSString *ago = [date timeAgo];
-//    self.lastBackupString = ago;
+    self.nextBackupString = @"Never";
+    self.lastBackupString = @"Never";
 
     return self;
 }
