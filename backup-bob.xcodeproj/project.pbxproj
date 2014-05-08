@@ -18,7 +18,7 @@
 		02D6F6E2191BE4CF00314446 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02D6F6C1191BE4CF00314446 /* Cocoa.framework */; };
 		02D6F6EA191BE4CF00314446 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 02D6F6E8191BE4CF00314446 /* InfoPlist.strings */; };
 		02D6F6EC191BE4CF00314446 /* backup_bobTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 02D6F6EB191BE4CF00314446 /* backup_bobTests.m */; };
-		659F2E1E4744FEDEFDEE272C /* NSError+ConvenienceCreatorAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 659F2152339CF9F4E2102FDC /* NSError+ConvenienceCreatorAdditions.m */; };
+		659F2FB18F639E2940D1B614 /* NSError+ConvenienceCreatorAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 659F227F2872120A2E5F7536 /* NSError+ConvenienceCreatorAdditions.m */; };
 		AF7AB6677287149CD3796015 /* StatusBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF7AB2A800442D9E7E2F3DCD /* StatusBarController.m */; };
 		AF7ABA290E6F2A987F6B6505 /* BackupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AF7ABC03EEF3FF74ABABF4CB /* BackupModel.m */; };
 		AF7ABCAF4ACBBBE4FE4F8A16 /* StatusBarViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AF7ABBBA6F7248E8D756BC93 /* StatusBarViewModel.m */; };
@@ -58,8 +58,8 @@
 		02D6F6EB191BE4CF00314446 /* backup_bobTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = backup_bobTests.m; sourceTree = "<group>"; };
 		507C52DF7CFC472EAC2BEA97 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		5B50C1040A8746CE8C176E14 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		659F2152339CF9F4E2102FDC /* NSError+ConvenienceCreatorAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+ConvenienceCreatorAdditions.m"; sourceTree = "<group>"; };
-		659F2E7E0C70355E576268DF /* NSError+ConvenienceCreatorAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+ConvenienceCreatorAdditions.h"; sourceTree = "<group>"; };
+		659F227F2872120A2E5F7536 /* NSError+ConvenienceCreatorAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSError+ConvenienceCreatorAdditions.m"; path = "backup-bob/Categories/NSError+ConvenienceCreatorAdditions.m"; sourceTree = SOURCE_ROOT; };
+		659F2DCB04000A02EC985ACF /* NSError+ConvenienceCreatorAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSError+ConvenienceCreatorAdditions.h"; path = "backup-bob/Categories/NSError+ConvenienceCreatorAdditions.h"; sourceTree = SOURCE_ROOT; };
 		AF7AB0E0E1D7EBDA3C99DAB0 /* TarsnapClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TarsnapClient.h; sourceTree = "<group>"; };
 		AF7AB2A800442D9E7E2F3DCD /* StatusBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusBarController.m; sourceTree = "<group>"; };
 		AF7AB2ED9ED488450F07D5AE /* StatusBarViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusBarViewModel.h; sourceTree = "<group>"; };
@@ -144,11 +144,8 @@
 				AF7ABC285106443DD9AC1446 /* TarsnapClient.m */,
 				AF7AB0E0E1D7EBDA3C99DAB0 /* TarsnapClient.h */,
 				AF7ABC249C10576F64C19745 /* StatusBarController */,
-<<<<<<< HEAD
-				659F2BB7057BF3C361A3419A /* Categories */,
-=======
 				AF7AB6F23261931FEF8E27D1 /* Backup */,
->>>>>>> 6ea73387f2416bea8ca9dfce822136914ea9e060
+				659F2AD9C1FE20000082C703 /* Category */,
 			);
 			path = "backup-bob";
 			sourceTree = "<group>";
@@ -183,15 +180,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-<<<<<<< HEAD
-		659F2BB7057BF3C361A3419A /* Categories */ = {
+		659F2AD9C1FE20000082C703 /* Category */ = {
 			isa = PBXGroup;
 			children = (
-				659F2152339CF9F4E2102FDC /* NSError+ConvenienceCreatorAdditions.m */,
-				659F2E7E0C70355E576268DF /* NSError+ConvenienceCreatorAdditions.h */,
+				659F2DCB04000A02EC985ACF /* NSError+ConvenienceCreatorAdditions.h */,
+				659F227F2872120A2E5F7536 /* NSError+ConvenienceCreatorAdditions.m */,
 			);
-			path = Categories;
-=======
+			path = Category;
+			sourceTree = "<group>";
+		};
 		AF7AB6F23261931FEF8E27D1 /* Backup */ = {
 			isa = PBXGroup;
 			children = (
@@ -199,7 +196,6 @@
 				AF7ABC03EEF3FF74ABABF4CB /* BackupModel.m */,
 			);
 			path = Backup;
->>>>>>> 6ea73387f2416bea8ca9dfce822136914ea9e060
 			sourceTree = "<group>";
 		};
 		AF7ABC249C10576F64C19745 /* StatusBarController */ = {
@@ -353,11 +349,8 @@
 				AF7ABF812B112E873606C829 /* TarsnapClient.m in Sources */,
 				AF7AB6677287149CD3796015 /* StatusBarController.m in Sources */,
 				AF7ABCAF4ACBBBE4FE4F8A16 /* StatusBarViewModel.m in Sources */,
-<<<<<<< HEAD
-				659F2E1E4744FEDEFDEE272C /* NSError+ConvenienceCreatorAdditions.m in Sources */,
-=======
 				AF7ABA290E6F2A987F6B6505 /* BackupModel.m in Sources */,
->>>>>>> 6ea73387f2416bea8ca9dfce822136914ea9e060
+				659F2FB18F639E2940D1B614 /* NSError+ConvenienceCreatorAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
