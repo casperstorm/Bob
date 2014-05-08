@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "TarsnapClient.h"
 #import "StatusBarController.h"
+#import "BackupModel.h"
 
 @interface AppDelegate ()
 @property (nonatomic, strong) StatusBarController *statusBarController;
@@ -33,6 +34,7 @@
     [signal subscribeCompleted:^{
         NSLog(@"Done");
     }];
+    [BackupModel sharedInstance];
 }
 
 @end

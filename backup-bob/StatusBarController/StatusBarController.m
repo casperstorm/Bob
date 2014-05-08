@@ -50,8 +50,9 @@
     self.statusItem.menu = menu;
 }
 
-- (void)backupNowClicked:(id)backupNowClicked {
-    NSLog(@"baam");
+- (void)backupNowClicked:(id)backupNowClicked
+{
+    [self.viewModel.backupNowCommand execute:nil];
 }
 
 #pragma mark - Properties

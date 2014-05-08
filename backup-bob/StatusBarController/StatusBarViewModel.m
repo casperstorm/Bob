@@ -5,6 +5,7 @@
 
 
 #import "StatusBarViewModel.h"
+#import "BackupModel.h"
 
 @interface StatusBarViewModel ()
 @property (nonatomic, strong) NSString *nextBackupString;
@@ -20,6 +21,19 @@
     self.lastBackupString = @"Never";
 
     return self;
+}
+
+#pragma mark - Properties
+
+- (RACCommand *)backupNowCommand
+{
+    if (!_backupNowCommand) {
+        _backupNowCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+            return [[[BackupModel sharedInstance] backupNowCommand] execute:input];
+        }];
+    }
+
+    return _backupNowCommand;
 }
 
 

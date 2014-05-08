@@ -20,6 +20,7 @@
 		02D6F6EC191BE4CF00314446 /* backup_bobTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 02D6F6EB191BE4CF00314446 /* backup_bobTests.m */; };
 		659F2E1E4744FEDEFDEE272C /* NSError+ConvenienceCreatorAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 659F2152339CF9F4E2102FDC /* NSError+ConvenienceCreatorAdditions.m */; };
 		AF7AB6677287149CD3796015 /* StatusBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF7AB2A800442D9E7E2F3DCD /* StatusBarController.m */; };
+		AF7ABA290E6F2A987F6B6505 /* BackupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AF7ABC03EEF3FF74ABABF4CB /* BackupModel.m */; };
 		AF7ABCAF4ACBBBE4FE4F8A16 /* StatusBarViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AF7ABBBA6F7248E8D756BC93 /* StatusBarViewModel.m */; };
 		AF7ABF812B112E873606C829 /* TarsnapClient.m in Sources */ = {isa = PBXBuildFile; fileRef = AF7ABC285106443DD9AC1446 /* TarsnapClient.m */; };
 		F9163E9B2017457F8BA7B180 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B50C1040A8746CE8C176E14 /* libPods.a */; };
@@ -62,8 +63,10 @@
 		AF7AB0E0E1D7EBDA3C99DAB0 /* TarsnapClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TarsnapClient.h; sourceTree = "<group>"; };
 		AF7AB2A800442D9E7E2F3DCD /* StatusBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusBarController.m; sourceTree = "<group>"; };
 		AF7AB2ED9ED488450F07D5AE /* StatusBarViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusBarViewModel.h; sourceTree = "<group>"; };
+		AF7AB69644AA702450D6AC69 /* BackupModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackupModel.h; sourceTree = "<group>"; };
 		AF7AB7061C2A9EBE19973BCC /* StatusBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusBarController.h; sourceTree = "<group>"; };
 		AF7ABBBA6F7248E8D756BC93 /* StatusBarViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusBarViewModel.m; sourceTree = "<group>"; };
+		AF7ABC03EEF3FF74ABABF4CB /* BackupModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackupModel.m; sourceTree = "<group>"; };
 		AF7ABC285106443DD9AC1446 /* TarsnapClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TarsnapClient.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -141,7 +144,11 @@
 				AF7ABC285106443DD9AC1446 /* TarsnapClient.m */,
 				AF7AB0E0E1D7EBDA3C99DAB0 /* TarsnapClient.h */,
 				AF7ABC249C10576F64C19745 /* StatusBarController */,
+<<<<<<< HEAD
 				659F2BB7057BF3C361A3419A /* Categories */,
+=======
+				AF7AB6F23261931FEF8E27D1 /* Backup */,
+>>>>>>> 6ea73387f2416bea8ca9dfce822136914ea9e060
 			);
 			path = "backup-bob";
 			sourceTree = "<group>";
@@ -176,6 +183,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+<<<<<<< HEAD
 		659F2BB7057BF3C361A3419A /* Categories */ = {
 			isa = PBXGroup;
 			children = (
@@ -183,6 +191,15 @@
 				659F2E7E0C70355E576268DF /* NSError+ConvenienceCreatorAdditions.h */,
 			);
 			path = Categories;
+=======
+		AF7AB6F23261931FEF8E27D1 /* Backup */ = {
+			isa = PBXGroup;
+			children = (
+				AF7AB69644AA702450D6AC69 /* BackupModel.h */,
+				AF7ABC03EEF3FF74ABABF4CB /* BackupModel.m */,
+			);
+			path = Backup;
+>>>>>>> 6ea73387f2416bea8ca9dfce822136914ea9e060
 			sourceTree = "<group>";
 		};
 		AF7ABC249C10576F64C19745 /* StatusBarController */ = {
@@ -336,7 +353,11 @@
 				AF7ABF812B112E873606C829 /* TarsnapClient.m in Sources */,
 				AF7AB6677287149CD3796015 /* StatusBarController.m in Sources */,
 				AF7ABCAF4ACBBBE4FE4F8A16 /* StatusBarViewModel.m in Sources */,
+<<<<<<< HEAD
 				659F2E1E4744FEDEFDEE272C /* NSError+ConvenienceCreatorAdditions.m in Sources */,
+=======
+				AF7ABA290E6F2A987F6B6505 /* BackupModel.m in Sources */,
+>>>>>>> 6ea73387f2416bea8ca9dfce822136914ea9e060
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

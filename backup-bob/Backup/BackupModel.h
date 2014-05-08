@@ -7,9 +7,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface StatusBarViewModel : NSObject
-@property (nonatomic, readonly) NSString *nextBackupString;
-@property (nonatomic, readonly) NSString *lastBackupString;
-
+@interface BackupModel : NSObject
++ (BackupModel *)sharedInstance;
 @property (nonatomic, strong) RACCommand *backupNowCommand;
 @end
