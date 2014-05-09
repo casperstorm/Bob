@@ -18,7 +18,10 @@
 		02D6F6E2191BE4CF00314446 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02D6F6C1191BE4CF00314446 /* Cocoa.framework */; };
 		02D6F6EA191BE4CF00314446 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 02D6F6E8191BE4CF00314446 /* InfoPlist.strings */; };
 		02D6F6EC191BE4CF00314446 /* backup_bobTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 02D6F6EB191BE4CF00314446 /* backup_bobTests.m */; };
-		659F2FB18F639E2940D1B614 /* NSError+ConvenienceCreatorAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 659F227F2872120A2E5F7536 /* NSError+ConvenienceCreatorAdditions.m */; };
+		659F26320DCBA62162FE978C /* FolderPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 659F23A3E60B7D304C652414 /* FolderPreferencesViewController.m */; };
+		659F27A3A2BB20C9F4B6D94C /* NSError+ConvenienceCreatorAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 659F240CEEC91F34BB1566A9 /* NSError+ConvenienceCreatorAdditions.m */; };
+		659F292955826CD9FE5394DB /* GeneralPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 659F2E7025F9A9EB5016A84F /* GeneralPreferencesViewController.m */; };
+		659F2C20EE047879C45D40D6 /* GeneralPreferencesViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 659F2C4F8CE0A325D9F0F5A2 /* GeneralPreferencesViewModel.m */; };
 		AF7AB373073D815469BFB252 /* bob-selected_360.png in Resources */ = {isa = PBXBuildFile; fileRef = AF7AB7061B721770BCD22DB3 /* bob-selected_360.png */; };
 		AF7AB5C63AC4C801AAAADF9E /* bob-retina_360.png in Resources */ = {isa = PBXBuildFile; fileRef = AF7AB92BDA4AD8AFCDF9F57D /* bob-retina_360.png */; };
 		AF7AB6677287149CD3796015 /* StatusBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF7AB2A800442D9E7E2F3DCD /* StatusBarController.m */; };
@@ -61,8 +64,14 @@
 		02D6F6EB191BE4CF00314446 /* backup_bobTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = backup_bobTests.m; sourceTree = "<group>"; };
 		507C52DF7CFC472EAC2BEA97 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		5B50C1040A8746CE8C176E14 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		659F227F2872120A2E5F7536 /* NSError+ConvenienceCreatorAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSError+ConvenienceCreatorAdditions.m"; path = "backup-bob/Categories/NSError+ConvenienceCreatorAdditions.m"; sourceTree = SOURCE_ROOT; };
-		659F2DCB04000A02EC985ACF /* NSError+ConvenienceCreatorAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSError+ConvenienceCreatorAdditions.h"; path = "backup-bob/Categories/NSError+ConvenienceCreatorAdditions.h"; sourceTree = SOURCE_ROOT; };
+		659F226374C5BE1E7517B01B /* FolderPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FolderPreferencesViewController.h; sourceTree = "<group>"; };
+		659F23A3E60B7D304C652414 /* FolderPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FolderPreferencesViewController.m; sourceTree = "<group>"; };
+		659F240CEEC91F34BB1566A9 /* NSError+ConvenienceCreatorAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+ConvenienceCreatorAdditions.m"; sourceTree = "<group>"; };
+		659F27C98E4718CFB62B873C /* GeneralPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneralPreferencesViewController.h; sourceTree = "<group>"; };
+		659F290947959BC907DC5758 /* NSError+ConvenienceCreatorAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+ConvenienceCreatorAdditions.h"; sourceTree = "<group>"; };
+		659F291BC77B77A823CE7CC0 /* GeneralPreferencesViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneralPreferencesViewModel.h; sourceTree = "<group>"; };
+		659F2C4F8CE0A325D9F0F5A2 /* GeneralPreferencesViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralPreferencesViewModel.m; sourceTree = "<group>"; };
+		659F2E7025F9A9EB5016A84F /* GeneralPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralPreferencesViewController.m; sourceTree = "<group>"; };
 		AF7AB0E0E1D7EBDA3C99DAB0 /* TarsnapClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TarsnapClient.h; sourceTree = "<group>"; };
 		AF7AB2A800442D9E7E2F3DCD /* StatusBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusBarController.m; sourceTree = "<group>"; };
 		AF7AB2ED9ED488450F07D5AE /* StatusBarViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusBarViewModel.h; sourceTree = "<group>"; };
@@ -151,8 +160,10 @@
 				AF7AB0E0E1D7EBDA3C99DAB0 /* TarsnapClient.h */,
 				AF7ABC249C10576F64C19745 /* StatusBarController */,
 				AF7AB6F23261931FEF8E27D1 /* Backup */,
-				659F2AD9C1FE20000082C703 /* Category */,
+				659F2AD9C1FE20000082C703,
+				659F26E853029B07C1F520D7 /* Preferences */,
 				AF7AB43EF24159FBEC16C7E1 /* UI */,
+				659F2D8C9D091C43BDC5D38F /* Categories */,
 			);
 			path = "backup-bob";
 			sourceTree = "<group>";
@@ -187,13 +198,26 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		659F2AD9C1FE20000082C703 /* Category */ = {
+		659F26E853029B07C1F520D7 /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
-				659F2DCB04000A02EC985ACF /* NSError+ConvenienceCreatorAdditions.h */,
-				659F227F2872120A2E5F7536 /* NSError+ConvenienceCreatorAdditions.m */,
+				659F27C98E4718CFB62B873C /* GeneralPreferencesViewController.h */,
+				659F2E7025F9A9EB5016A84F /* GeneralPreferencesViewController.m */,
+				659F2C4F8CE0A325D9F0F5A2 /* GeneralPreferencesViewModel.m */,
+				659F291BC77B77A823CE7CC0 /* GeneralPreferencesViewModel.h */,
+				659F23A3E60B7D304C652414 /* FolderPreferencesViewController.m */,
+				659F226374C5BE1E7517B01B /* FolderPreferencesViewController.h */,
 			);
-			path = Category;
+			path = Preferences;
+			sourceTree = "<group>";
+		};
+		659F2D8C9D091C43BDC5D38F /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				659F290947959BC907DC5758 /* NSError+ConvenienceCreatorAdditions.h */,
+				659F240CEEC91F34BB1566A9 /* NSError+ConvenienceCreatorAdditions.m */,
+			);
+			path = Categories;
 			sourceTree = "<group>";
 		};
 		AF7AB43EF24159FBEC16C7E1 /* UI */ = {
@@ -370,7 +394,10 @@
 				AF7AB6677287149CD3796015 /* StatusBarController.m in Sources */,
 				AF7ABCAF4ACBBBE4FE4F8A16 /* StatusBarViewModel.m in Sources */,
 				AF7ABA290E6F2A987F6B6505 /* BackupModel.m in Sources */,
-				659F2FB18F639E2940D1B614 /* NSError+ConvenienceCreatorAdditions.m in Sources */,
+				659F292955826CD9FE5394DB /* GeneralPreferencesViewController.m in Sources */,
+				659F2C20EE047879C45D40D6 /* GeneralPreferencesViewModel.m in Sources */,
+				659F26320DCBA62162FE978C /* FolderPreferencesViewController.m in Sources */,
+				659F27A3A2BB20C9F4B6D94C /* NSError+ConvenienceCreatorAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

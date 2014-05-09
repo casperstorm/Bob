@@ -6,6 +6,9 @@
 
 #import "StatusBarController.h"
 #import "StatusBarViewModel.h"
+#import "MASPreferencesWindowController.h"
+#import "GeneralPreferencesViewController.h"
+#import "FolderPreferencesViewController.h"
 
 @interface StatusBarController ()
 @property (nonatomic, strong) NSStatusItem *statusItem;
@@ -16,16 +19,26 @@
 @implementation StatusBarController
 {
     StatusBarViewModel *_viewModel;
+    MASPreferencesWindowController *_preferencesWindowController;
 }
 
 - (id)init
 {
     if (!(self = [super init])) return nil;
-
+    [self setupPreferences];
     [self setupMenu];
     [self setupBindings];
 
     return self;
+}
+
+- (void)setupPreferences {
+    GeneralPreferencesViewController *generalPreferencesViewController = [GeneralPreferencesViewController new];
+    FolderPreferencesViewController *folderPreferencesViewController = [FolderPreferencesViewController new];
+    NSArray *controllers = @[generalPreferencesViewController, folderPreferencesViewController];
+
+    NSString *title = @"Preferences";
+    _preferencesWindowController = [[MASPreferencesWindowController alloc] initWithViewControllers:controllers title:title];
 }
 
 - (void)setupBindings
@@ -48,10 +61,14 @@
     [menu addItem:[NSMenuItem separatorItem]];
     [[menu addItemWithTitle:@"Backup now" action:@selector(backupNowClicked:) keyEquivalent:@""] setTarget:self];
     [menu addItem:[NSMenuItem separatorItem]];
-    [[menu addItemWithTitle:@"Preferences..." action:@selector(backupNowClicked:) keyEquivalent:@""] setTarget:self];
+    [[menu addItemWithTitle:@"Preferences..." action:@selector(preferencesClicked:) keyEquivalent:@""] setTarget:self];
     [menu addItem:[NSMenuItem separatorItem]];
     [menu addItemWithTitle:@"Quit" action:@selector(terminate:) keyEquivalent:@""];
     self.statusItem.menu = menu;
+}
+
+- (void)preferencesClicked:(id)preferencesClicked {
+    [_preferencesWindowController showWindow:nil];
 }
 
 - (void)backupNowClicked:(id)backupNowClicked
