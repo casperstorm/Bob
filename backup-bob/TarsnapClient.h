@@ -8,6 +8,7 @@
 
 
 @interface TarsnapClient : NSObject
-- (RACSignal *)start;
+- (RACSignal *)makeWithDeltas:(NSArray *)deltas sources:(NSArray *)sources;
+
 - (RACSignal *)sleep;
 @end

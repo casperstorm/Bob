@@ -19,8 +19,11 @@
     return self;
 }
 
-- (RACSignal *)start {
-    return [self performCommandWithLaunchPath:@"/usr/local/bin/tarsnapper" arguments:@[@"-c", @" /Users/peter/.backup/backup.config", @"make"]];
+- (RACSignal *)makeWithDeltas:(NSArray *)deltas sources:(NSArray *)sources  {
+    NSString *deltasString = @"--deltas 3h 1d 7d 30d";
+    NSString *sourcesString = @"--sources test";
+    NSString *targetString = @"--target \"/$name-$date\"";
+    return [self performCommandWithLaunchPath:@"/usr/local/bin/tarsnapper" arguments:@[deltasString, targetString, sourcesString, @"- make"]];
 }
 
 - (RACSignal *)sleep {
