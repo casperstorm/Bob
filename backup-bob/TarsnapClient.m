@@ -8,9 +8,8 @@
 #import "NSError+ConvenienceCreatorAdditions.h"
 
 @interface TarsnapClient ()
-@property (nonatomic, strong) NSString *nextBackupString;
-@property (nonatomic, strong) NSString *lastBackupString;
 @end
+
 @implementation TarsnapClient
 
 - (id)init
@@ -20,8 +19,14 @@
     return self;
 }
 
-- (RACSignal *)startBackup {
-//    return [self performCommandWithLaunchPath:@"/bin/sh" arguments:@[@"/Users/peter/.backup/backup.sh"]];
+- (RACSignal *)makeWithDeltas:(NSArray *)deltas sources:(NSArray *)sources  {
+    NSString *deltasString = @"--deltas 3h 1d 7d 30d";
+    NSString *sourcesString = @"--sources test";
+    NSString *targetString = @"--target \"/$name-$date\"";
+    return [self performCommandWithLaunchPath:@"/usr/local/bin/tarsnapper" arguments:@[deltasString, targetString, sourcesString, @"- make"]];
+}
+
+- (RACSignal *)sleep {
     return [self performCommandWithLaunchPath:@"/bin/sleep" arguments:@[@"5"]];
 }
 
