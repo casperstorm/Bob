@@ -11,8 +11,11 @@
 @property (nonatomic, strong) TarsnapClient *tarsnapClient;
 @property (nonatomic, strong) NSTimer *backupTimer;
 @property (nonatomic, strong) RACSignal *checkBackupTimer;
+@property (nonatomic, strong) NSArray *folders;
 @end
-@implementation BackupModel
+@implementation BackupModel {
+    NSArray *_folders;
+}
 
 + (BackupModel *)sharedInstance
 {
@@ -28,6 +31,8 @@
 - (id)init
 {
     if (!(self = [super init])) return nil;
+
+    _folders = [NSMutableArray new];
 
     NSLog(@"Init..");
     [self setupBindings];
@@ -76,6 +81,12 @@
     }
 
     return _tarsnapClient;
+}
+
+- (void)addFolders:(NSArray *)folders {
+    NSMutableArray *allFolders = [NSMutableArray arrayWithArray:_folders];
+    [allFolders addObjectsFromArray:folders];
+    self.folders = allFolders;
 }
 
 @end

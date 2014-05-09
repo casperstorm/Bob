@@ -5,9 +5,13 @@
 
 #import <Masonry/View+MASAdditions.h>
 #import "FolderPreferencesViewController.h"
+#import "FolderPreferencesViewModel.h"
+#import "BackupModel.h"
+#import "Folder.h"
 
 
 @implementation FolderPreferencesViewController {
+    FolderPreferencesViewModel *_viewModel;
 
     NSTableView *_folderTableView;
     NSButton *_addButton;
@@ -20,6 +24,8 @@
     if (self) {
         NSView *view = [[NSView alloc] initWithFrame:NSMakeRect(0, 0, 300, 300)];
 
+        _viewModel = [FolderPreferencesViewModel new];
+
         [self setView:view];
         [self setupBindings];
         [self setupSubViews];
@@ -31,6 +37,7 @@
 
 - (void)setupBindings {
 
+    [self.folderTableView rac_liftSelector:@selector(reloadData:) withSignals:[RACObserve(_viewModel, folders) distinctUntilChanged], nil];
 }
 
 - (void)setupLayout {
@@ -84,11 +91,11 @@
 }
 
 - (BOOL)hasResizableWidth {
-    return NO;
+    return YES;
 }
 
 - (BOOL)hasResizableHeight {
-    return NO;
+    return YES;
 }
 
 #pragma mark - Actions
@@ -105,21 +112,31 @@
     if ( [openDlg runModal] == NSOKButton ) {
         NSArray* files = [openDlg URLs];
 
-        for( int i = 0; i < [files count]; i++ )
-        {
-            NSString* fileName = [files objectAtIndex:i];
-            NSLog(@"file: %@", fileName);
+        NSMutableArray *folders = [NSMutableArray new];
+        for (NSURL *url in files) {
+            NSLog(@"%@", [url path]);
+            Folder *folder = [[Folder alloc] initWithPath:[url path] active:YES];
+            [folders addObject:folder];
         }
+
+//        for( int i = 0; i < [files count]; i++ ) {
+//            NSString* fileName = [files objectAtIndex:i];
+//            Folder *folder = [[Folder alloc] initWithPath:fileName active:YES];
+//            [folders addObject:folder];
+//        }
+
+        [[BackupModel sharedInstance] addFolders:folders];
     }
 }
 
 #pragma mark - TableView delegate
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
-    return 20;
+    return _viewModel.folders.count;
 }
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
+    Folder *folder = [_viewModel.folders objectAtIndex:(NSUInteger) row];
 
     if ([tableColumn.identifier isEqualToString:ColumnActiveIdentifier]) {
         NSString *activeIdentifier = @"ActiveIdentifier";
@@ -130,8 +147,12 @@
             [activeButton setButtonType:NSSwitchButton];
             [activeButton setTitle:@""];
 
-            return activeButton;
         }
+
+        [activeButton setState:[folder isActive]];
+
+        return activeButton;
+
     } else if([tableColumn.identifier isEqualToString:ColumnPathIdentifier]) {
         NSString *pathIdentifier = @"PathIdentifier";
         NSTextField *pathTextField = [tableView makeViewWithIdentifier:pathIdentifier owner:self];
@@ -143,7 +164,8 @@
             [pathTextField setSelectable:NO];
             pathTextField.identifier = pathIdentifier;
         }
-        pathTextField.stringValue = @"Baam";
+
+        pathTextField.stringValue = folder.path;
 
         return pathTextField;
     }

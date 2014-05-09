@@ -9,7 +9,11 @@
 
 @interface BackupModel : NSObject
 + (BackupModel *)sharedInstance;
+
+- (void)addFolders:(NSArray *)folders;
+
 @property (nonatomic, strong) RACCommand *backupNowCommand;
 @property (nonatomic, strong) NSDate *nextBackupDate;
 @property (nonatomic, strong) NSDate *lastBackupDate;
+@property (nonatomic, readonly) NSArray *folders;
 @end
