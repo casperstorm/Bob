@@ -22,9 +22,11 @@
 		659F292955826CD9FE5394DB /* GeneralPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 659F2E7025F9A9EB5016A84F /* GeneralPreferencesViewController.m */; };
 		659F2C20EE047879C45D40D6 /* GeneralPreferencesViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 659F2C4F8CE0A325D9F0F5A2 /* GeneralPreferencesViewModel.m */; };
 		659F2FB18F639E2940D1B614 /* NSError+ConvenienceCreatorAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 659F227F2872120A2E5F7536 /* NSError+ConvenienceCreatorAdditions.m */; };
+		AF7AB5C63AC4C801AAAADF9E /* bob-retina_360.png in Resources */ = {isa = PBXBuildFile; fileRef = AF7AB92BDA4AD8AFCDF9F57D /* bob-retina_360.png */; };
 		AF7AB6677287149CD3796015 /* StatusBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF7AB2A800442D9E7E2F3DCD /* StatusBarController.m */; };
 		AF7ABA290E6F2A987F6B6505 /* BackupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AF7ABC03EEF3FF74ABABF4CB /* BackupModel.m */; };
 		AF7ABCAF4ACBBBE4FE4F8A16 /* StatusBarViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AF7ABBBA6F7248E8D756BC93 /* StatusBarViewModel.m */; };
+		AF7ABE87761A73514189BFDD /* bob-normal_360.png in Resources */ = {isa = PBXBuildFile; fileRef = AF7ABF3940A2857E260136AA /* bob-normal_360.png */; };
 		AF7ABF812B112E873606C829 /* TarsnapClient.m in Sources */ = {isa = PBXBuildFile; fileRef = AF7ABC285106443DD9AC1446 /* TarsnapClient.m */; };
 		F9163E9B2017457F8BA7B180 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B50C1040A8746CE8C176E14 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -74,9 +76,11 @@
 		AF7AB2ED9ED488450F07D5AE /* StatusBarViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusBarViewModel.h; sourceTree = "<group>"; };
 		AF7AB69644AA702450D6AC69 /* BackupModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackupModel.h; sourceTree = "<group>"; };
 		AF7AB7061C2A9EBE19973BCC /* StatusBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusBarController.h; sourceTree = "<group>"; };
+		AF7AB92BDA4AD8AFCDF9F57D /* bob-retina_360.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bob-retina_360.png"; sourceTree = "<group>"; };
 		AF7ABBBA6F7248E8D756BC93 /* StatusBarViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusBarViewModel.m; sourceTree = "<group>"; };
 		AF7ABC03EEF3FF74ABABF4CB /* BackupModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackupModel.m; sourceTree = "<group>"; };
 		AF7ABC285106443DD9AC1446 /* TarsnapClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TarsnapClient.m; sourceTree = "<group>"; };
+		AF7ABF3940A2857E260136AA /* bob-normal_360.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bob-normal_360.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +160,7 @@
 				AF7AB6F23261931FEF8E27D1 /* Backup */,
 				659F2AD9C1FE20000082C703 /* Category */,
 				659F26E853029B07C1F520D7 /* Preferences */,
+				AF7AB43EF24159FBEC16C7E1 /* UI */,
 			);
 			path = "backup-bob";
 			sourceTree = "<group>";
@@ -203,14 +208,14 @@
 			path = Preferences;
 			sourceTree = "<group>";
 		};
-		659F2AD9C1FE20000082C703 /* Category */ = {
+		AF7AB43EF24159FBEC16C7E1 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				659F2DCB04000A02EC985ACF /* NSError+ConvenienceCreatorAdditions.h */,
-				659F227F2872120A2E5F7536 /* NSError+ConvenienceCreatorAdditions.m */,
+				AF7AB92BDA4AD8AFCDF9F57D /* bob-retina_360.png */,
+				AF7ABF3940A2857E260136AA /* bob-normal_360.png */,
 			);
-			path = Category;
-			sourceTree = "<group>";
+			path = UI;
+			sourceTree = SOURCE_ROOT;
 		};
 		AF7AB6F23261931FEF8E27D1 /* Backup */ = {
 			isa = PBXGroup;
@@ -316,6 +321,8 @@
 				02D6F6DA191BE4CF00314446 /* Images.xcassets in Resources */,
 				02D6F6D2191BE4CF00314446 /* Credits.rtf in Resources */,
 				02D6F6D8191BE4CF00314446 /* MainMenu.xib in Resources */,
+				AF7AB5C63AC4C801AAAADF9E /* bob-retina_360.png in Resources */,
+				AF7ABE87761A73514189BFDD /* bob-normal_360.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

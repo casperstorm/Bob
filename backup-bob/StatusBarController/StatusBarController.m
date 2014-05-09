@@ -50,7 +50,8 @@
 - (void)setupMenu
 {
     self.statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
-    self.statusItem.title = @"Bob";
+    self.statusItem.image = [NSImage imageNamed:@"bob-normal_360.png"];
+    self.statusItem.title = @"";
     self.statusItem.highlightMode = YES;
 
     NSMenu *menu = [NSMenu new];
