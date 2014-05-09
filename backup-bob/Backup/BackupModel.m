@@ -63,7 +63,7 @@
 - (void)startTimer:(id)_
 {
     // Timer which will launch the backup
-    self.backupTimer = [NSTimer timerWithTimeInterval:(3 * 3601) target:self selector:@selector(backupTimeFired:) userInfo:nil repeats:NO];
+    self.backupTimer = [NSTimer timerWithTimeInterval:(10) target:self selector:@selector(backupTimeFired:) userInfo:nil repeats:NO];
     [[NSRunLoop mainRunLoop] addTimer:self.backupTimer forMode:NSRunLoopCommonModes];
 }
 

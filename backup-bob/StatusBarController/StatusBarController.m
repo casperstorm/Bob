@@ -82,7 +82,6 @@
 {
     if (!_lastBackupMenuItem) {
         _lastBackupMenuItem = [NSMenuItem new];
-        _lastBackupMenuItem.title = @"Never";
     }
 
     return _lastBackupMenuItem;
@@ -92,7 +91,6 @@
 {
     if (!_nextBackupMenuItem) {
         _nextBackupMenuItem = [NSMenuItem new];
-        _nextBackupMenuItem.title = @"Never";
     }
 
     return _nextBackupMenuItem;

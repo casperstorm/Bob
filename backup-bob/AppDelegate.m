@@ -10,6 +10,7 @@
 #import "TarsnapClient.h"
 #import "StatusBarController.h"
 #import "BackupModel.h"
+#import "NotificationsManager.h"
 
 @interface AppDelegate ()
 @property (nonatomic, strong) StatusBarController *statusBarController;
@@ -20,21 +21,8 @@
 {
     self.statusBarController = [StatusBarController new];
 
-//    TarsnapClient *tarsnapClient = [TarsnapClient new];
-//    RACSignal *signal = [tarsnapClient startBackup];
-//
-//    [signal subscribeNext:^(id x) {
-//        NSLog(@"Next: %@", x);
-//    }];
-//
-//    [signal subscribeError:^(NSError *error) {
-//        NSLog(@"Error: %@", [error localizedDescription]);
-//    }];
-//
-//    [signal subscribeCompleted:^{
-//        NSLog(@"Done");
-//    }];
     [BackupModel sharedInstance];
+    [NotificationsManager sharedInstance];
 }
 
 @end
