@@ -69,6 +69,7 @@
 
 - (void)preferencesClicked:(id)preferencesClicked {
     [_preferencesWindowController showWindow:nil];
+    [NSApp activateIgnoringOtherApps:YES];
 }
 
 - (void)backupNowClicked:(id)backupNowClicked

@@ -13,8 +13,11 @@
 @property (nonatomic, assign) BOOL backupInProgress;
 @property (nonatomic, strong) NSDate *nextBackupDate;
 @property (nonatomic, strong) NSDate *lastBackupDate;
+@property (nonatomic, strong) NSArray *folders;
 @end
-@implementation BackupModel
+@implementation BackupModel {
+    NSArray *_folders;
+}
 
 + (BackupModel *)sharedInstance
 {
@@ -30,8 +33,11 @@
 - (id)init
 {
     if (!(self = [super init])) return nil;
-
     [self startTimer:nil];
+
+    _folders = [NSMutableArray new];
+
+    NSLog(@"Init..");
     [self setupBindings];
 
     return self;
@@ -88,6 +94,12 @@
     }
 
     return _tarsnapClient;
+}
+
+- (void)addFolders:(NSArray *)folders {
+    NSMutableArray *allFolders = [NSMutableArray arrayWithArray:_folders];
+    [allFolders addObjectsFromArray:folders];
+    self.folders = allFolders;
 }
 
 @end
