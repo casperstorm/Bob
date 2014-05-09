@@ -5,13 +5,11 @@
 
 
 #import "TarsnapClient.h"
-#import "NSDate+TimeAgo.h"
 #import "NSError+ConvenienceCreatorAdditions.h"
 
 @interface TarsnapClient ()
-@property (nonatomic, strong) NSString *nextBackupString;
-@property (nonatomic, strong) NSString *lastBackupString;
 @end
+
 @implementation TarsnapClient
 
 - (id)init
@@ -21,8 +19,11 @@
     return self;
 }
 
-- (RACSignal *)startBackup {
-//    return [self performCommandWithLaunchPath:@"/bin/sh" arguments:@[@"/Users/peter/.backup/backup.sh"]];
+- (RACSignal *)start {
+    return [self performCommandWithLaunchPath:@"/usr/local/bin/tarsnapper" arguments:@[@"-c", @" /Users/peter/.backup/backup.config", @"make"]];
+}
+
+- (RACSignal *)sleep {
     return [self performCommandWithLaunchPath:@"/bin/sleep" arguments:@[@"5"]];
 }
 
