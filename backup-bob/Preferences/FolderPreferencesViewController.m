@@ -12,7 +12,7 @@
 
 @implementation FolderPreferencesViewController {
     FolderPreferencesViewModel *_viewModel;
-
+    NSOutlineView *_folderView;
     NSTableView *_folderTableView;
     NSButton *_addButton;
     NSButton *_removeButton;
@@ -172,7 +172,6 @@
 }
 
 - (void)tableViewSelectionDidChange:(NSNotification *)notification {
-
 }
 
 

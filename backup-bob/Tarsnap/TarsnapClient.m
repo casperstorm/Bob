@@ -6,6 +6,7 @@
 
 #import "TarsnapClient.h"
 #import "NSError+ConvenienceCreatorAdditions.h"
+#import "Folder.h"
 
 @interface TarsnapClient ()
 @end
@@ -20,10 +21,24 @@
 }
 
 - (RACSignal *)makeWithDeltas:(NSArray *)deltas folders:(NSArray *)folders  {
-    NSString *deltasString = @"--deltas 3h 1d 7d 30d";
-    NSString *sourcesString = @"--sources test";
-    NSString *targetString = @"--target \"/$name-$date\"";
-    return [self performCommandWithLaunchPath:@"/usr/local/bin/tarsnapper" arguments:@[deltasString, targetString, sourcesString, @"- make"]];
+    if(folders.count==0) return nil;
+
+    NSMutableArray *arguments = [NSMutableArray new];
+    [arguments addObjectsFromArray:@[@"--deltas", @"3h", @"1d", @"7d", @"30d"]];
+    [arguments addObject:@"--sources"];
+    for (Folder *folder in folders) {
+        if([folder isActive]) {
+            [arguments addObject:folder.path];
+        }
+    }
+
+    [arguments addObject:@"--target"];
+    [arguments addObject:@"Backup-$date"];
+
+    [arguments addObject:@"-"];
+    [arguments addObject:@"make"];
+
+    return [self performCommandWithLaunchPath:@"/usr/local/bin/tarsnapper" arguments:arguments environment:@{}];
 }
 
 - (RACSignal *)sleep {
@@ -42,13 +57,14 @@
 //    return [self performCommandWithLaunchPath:@"/bin/sleep" arguments:@[@"5"]];
 }
 
-- (RACSignal *)performCommandWithLaunchPath:(NSString *)launchPath arguments:(NSArray *)arguments {
+- (RACSignal *)performCommandWithLaunchPath:(NSString *)launchPath arguments:(NSArray *)arguments environment:(NSDictionary *)environment {
     return [RACSignal createSignal:^RACDisposable *(id <RACSubscriber> subscriber) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             NSTask *task;
             task = [[NSTask alloc] init];
             [task setLaunchPath:launchPath];
-            [task setArguments: arguments];
+            [task setArguments:arguments];
+            [task setEnvironment:environment];
 
             NSPipe *pipe = [NSPipe pipe];
             [task setStandardOutput:pipe];
