@@ -51,6 +51,7 @@
 {
     self.statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
     self.statusItem.image = [NSImage imageNamed:@"bob-normal_360.png"];
+    self.statusItem.alternateImage = [NSImage imageNamed:@"bob-selected_360.png"];
     self.statusItem.title = @"";
     self.statusItem.highlightMode = YES;
 
