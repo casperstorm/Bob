@@ -10,7 +10,9 @@
 @interface BackupModel ()
 @property (nonatomic, strong) TarsnapClient *tarsnapClient;
 @property (nonatomic, strong) NSTimer *backupTimer;
-@property (nonatomic, strong) RACSignal *checkBackupTimer;
+@property (nonatomic, assign) BOOL backupInProgress;
+@property (nonatomic, strong) NSDate *nextBackupDate;
+@property (nonatomic, strong) NSDate *lastBackupDate;
 @end
 @implementation BackupModel
 
@@ -29,7 +31,7 @@
 {
     if (!(self = [super init])) return nil;
 
-    NSLog(@"Init..");
+    [self startTimer:nil];
     [self setupBindings];
 
     return self;
@@ -37,23 +39,32 @@
 
 - (void)setupBindings
 {
-    self.backupTimer = [NSTimer scheduledTimerWithTimeInterval:(8) target:self selector:@selector(backupTimeFired:) userInfo:nil repeats:YES];
-    self.checkBackupTimer = [[RACSignal interval:1.0 onScheduler:[RACScheduler currentScheduler]] startWith:nil];
+    RAC(self, nextBackupDate) = RACObserve(self, backupTimer.fireDate);
 
-    RAC(self, nextBackupDate) = [self.checkBackupTimer map:^id(id _) {
-        return [self.backupTimer.fireDate copy];
-    }];
+    // Binds the executing signal of the backupNowCommand so we know when we are backing up.
+    RAC(self, backupInProgress) = self.backupNowCommand.executing;
 
-    RAC(self, lastBackupDate) = [[[[[self.backupNowCommand.executionSignals flatten] materialize] filter:^BOOL(RACEvent *event) {
-        return event.eventType == RACEventTypeNext;
-    }] dematerialize] map:^id(id value) {
+    RACSignal *backupDoneSignal = [[[RACObserve(self, backupInProgress) distinctUntilChanged] ignore:@YES] skip:1];
+    RAC(self, lastBackupDate) = [backupDoneSignal map:^id(id value) {
         return [NSDate date];
     }];
+
+    // When backup is done, it fires startTimer: again.
+    [self rac_liftSelector:@selector(startTimer:) withSignals:backupDoneSignal, nil];
 }
 
 - (void)backupTimeFired:(id)backupTimeFired
 {
     [self.backupNowCommand execute:nil];
+}
+
+#pragma mark - Timer
+
+- (void)startTimer:(id)_
+{
+    // Timer which will launch the backup
+    self.backupTimer = [NSTimer timerWithTimeInterval:(3 * 3601) target:self selector:@selector(backupTimeFired:) userInfo:nil repeats:NO];
+    [[NSRunLoop mainRunLoop] addTimer:self.backupTimer forMode:NSRunLoopCommonModes];
 }
 
 #pragma mark - Properties
@@ -62,6 +73,7 @@
 {
     if (!_backupNowCommand) {
         _backupNowCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+            [self.backupTimer invalidate];
             return self.tarsnapClient.sleep;
         }];
     }

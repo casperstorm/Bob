@@ -18,14 +18,36 @@
 {
     if (!(self = [super init])) return nil;
 
-    RAC(self, nextBackupString) = [RACObserve([BackupModel sharedInstance], nextBackupDate) map:^id(NSDate *nextBackupDate) {
-        NSString *relativeDate = [[SORelativeDateTransformer registeredTransformer] transformedValue:nextBackupDate];
-        return [NSString stringWithFormat:@"Next backup %@", relativeDate];
+    /*
+        Listen to last lastBackupDateSignal, and a timer which fires every 0.1 sec.
+        If we have no lastBackupDate, we haven't had any backups yet. Else we print the relativeDate.
+    */
+    RACSignal *checkBackupTimer = [[RACSignal interval:0.1 onScheduler:[RACScheduler currentScheduler]] startWith:nil];
+    RACSignal *lastBackupDateSignal = RACObserve([BackupModel sharedInstance], lastBackupDate);
+    RAC(self, lastBackupString) = [[RACSignal combineLatest:@[lastBackupDateSignal, checkBackupTimer ]] map:^id(RACTuple *tuple) {
+        RACTupleUnpack(NSDate *date) = tuple;
+        if(date == nil) {
+            return @"No backups yet";
+        } else {
+            NSString *relativeDate = [[SORelativeDateTransformer registeredTransformer] transformedValue:date];
+            return [NSString stringWithFormat:@"Last backup %@", relativeDate];
+        }
     }];
 
-    RAC(self, lastBackupString) = [RACObserve([BackupModel sharedInstance], lastBackupDate) map:^id(NSDate *nextBackupDate) {
-        NSString *relativeDate = [[SORelativeDateTransformer registeredTransformer] transformedValue:nextBackupDate];
-        return [NSString stringWithFormat:@"Last backup %@", relativeDate];
+    /*
+        Listen to last nextBackupDateSignal, a timer which fires every 0.1 sec and if a backup is in progress.
+        If a backup is in progress, we write it. Else we write the relative time until the next backup
+    */
+    RACSignal *nextBackupDateSignal = RACObserve([BackupModel sharedInstance], nextBackupDate);
+    RACSignal *backupInProgressSignal = RACObserve([BackupModel sharedInstance], backupInProgress);
+    RAC(self, nextBackupString) = [[RACSignal combineLatest:@[nextBackupDateSignal, backupInProgressSignal, checkBackupTimer]] map:^id(RACTuple *tuple) {
+        RACTupleUnpack(NSDate *nextBackupDate, NSNumber *backupInProgress) = tuple;
+        if([backupInProgress boolValue]) {
+            return @"Backup in progress..";
+        } else {
+            NSString *relativeDate = [[SORelativeDateTransformer registeredTransformer] transformedValue:nextBackupDate];
+            return [NSString stringWithFormat:@"Next backup %@", relativeDate];
+        }
     }];
 
     return self;

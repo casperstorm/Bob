@@ -10,6 +10,7 @@
 @interface BackupModel : NSObject
 + (BackupModel *)sharedInstance;
 @property (nonatomic, strong) RACCommand *backupNowCommand;
-@property (nonatomic, strong) NSDate *nextBackupDate;
-@property (nonatomic, strong) NSDate *lastBackupDate;
+@property (nonatomic, readonly) NSDate *nextBackupDate;
+@property (nonatomic, readonly) NSDate *lastBackupDate;
+@property (nonatomic, readonly) BOOL backupInProgress;
 @end
