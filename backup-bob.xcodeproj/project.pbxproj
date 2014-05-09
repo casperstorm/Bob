@@ -29,6 +29,7 @@
 		659F2C20EE047879C45D40D6 /* GeneralPreferencesViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 659F2C4F8CE0A325D9F0F5A2 /* GeneralPreferencesViewModel.m */; };
 		AF7AB373073D815469BFB252 /* bob-selected_360.png in Resources */ = {isa = PBXBuildFile; fileRef = AF7AB7061B721770BCD22DB3 /* bob-selected_360.png */; };
 		AF7AB5C63AC4C801AAAADF9E /* bob-retina_360.png in Resources */ = {isa = PBXBuildFile; fileRef = AF7AB92BDA4AD8AFCDF9F57D /* bob-retina_360.png */; };
+		AF7AB5E013CDD1B72E74E4DC /* NotificationsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AF7AB65A89B68C44B03595E4 /* NotificationsManager.m */; };
 		AF7AB6677287149CD3796015 /* StatusBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF7AB2A800442D9E7E2F3DCD /* StatusBarController.m */; };
 		AF7ABA290E6F2A987F6B6505 /* BackupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AF7ABC03EEF3FF74ABABF4CB /* BackupModel.m */; };
 		AF7ABCAF4ACBBBE4FE4F8A16 /* StatusBarViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AF7ABBBA6F7248E8D756BC93 /* StatusBarViewModel.m */; };
@@ -88,10 +89,12 @@
 		659F2F65FD251E32A25D5913 /* NSTableView+RACAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTableView+RACAdditions.h"; sourceTree = "<group>"; };
 		AF7AB2A800442D9E7E2F3DCD /* StatusBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusBarController.m; sourceTree = "<group>"; };
 		AF7AB2ED9ED488450F07D5AE /* StatusBarViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusBarViewModel.h; sourceTree = "<group>"; };
+		AF7AB65A89B68C44B03595E4 /* NotificationsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationsManager.m; sourceTree = "<group>"; };
 		AF7AB69644AA702450D6AC69 /* BackupModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackupModel.h; sourceTree = "<group>"; };
 		AF7AB7061B721770BCD22DB3 /* bob-selected_360.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bob-selected_360.png"; sourceTree = "<group>"; };
 		AF7AB7061C2A9EBE19973BCC /* StatusBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusBarController.h; sourceTree = "<group>"; };
 		AF7AB92BDA4AD8AFCDF9F57D /* bob-retina_360.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bob-retina_360.png"; sourceTree = "<group>"; };
+		AF7ABAB58F84C11EBFB20DDD /* NotificationsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationsManager.h; sourceTree = "<group>"; };
 		AF7ABBBA6F7248E8D756BC93 /* StatusBarViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusBarViewModel.m; sourceTree = "<group>"; };
 		AF7ABC03EEF3FF74ABABF4CB /* BackupModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackupModel.m; sourceTree = "<group>"; };
 		AF7ABF3940A2857E260136AA /* bob-normal_360.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bob-normal_360.png"; sourceTree = "<group>"; };
@@ -176,6 +179,7 @@
 				659F2D8C9D091C43BDC5D38F /* Categories */,
 				659F25DDC5BA2ADA9D726BDE /* Model */,
 				659F299439973BCB5831C5B4 /* Tarsnap */,
+				AF7ABCC484A80DA488C62E85 /* Notifications */,
 			);
 			path = "backup-bob";
 			sourceTree = "<group>";
@@ -284,6 +288,15 @@
 				AF7ABBBA6F7248E8D756BC93 /* StatusBarViewModel.m */,
 			);
 			path = StatusBarController;
+			sourceTree = "<group>";
+		};
+		AF7ABCC484A80DA488C62E85 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				AF7AB65A89B68C44B03595E4 /* NotificationsManager.m */,
+				AF7ABAB58F84C11EBFB20DDD /* NotificationsManager.h */,
+			);
+			path = Notifications;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -438,6 +451,7 @@
 				659F225D00D294B47C818944 /* NSTableView+RACAdditions.m in Sources */,
 				659F2C20D40243BB9DBAC4EB /* TarsnapClient.m in Sources */,
 				659F28736A38432422732E4B /* NSButton+RACAdditions.m in Sources */,
+				AF7AB5E013CDD1B72E74E4DC /* NotificationsManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
