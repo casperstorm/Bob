@@ -7,7 +7,9 @@
 #import "GeneralPreferencesViewModel.h"
 #import "View+MASAdditions.h"
 
-
+@interface GeneralPreferencesViewController ()
+@property (nonatomic, readonly) GeneralPreferencesViewModel *viewModel;
+@end
 @implementation GeneralPreferencesViewController {
     GeneralPreferencesViewModel *_viewModel;
     NSButton *_startAtLaunchSwitchButton;
@@ -30,8 +32,8 @@
     [self.startAtLaunchSwitchButton mas_updateConstraints:^(MASConstraintMaker *make) {
         make.height.equalTo(@20);
         make.right.equalTo(@-10);
-        make.top.equalTo(@40);
-        make.left.equalTo(@40);
+        make.top.equalTo(self.view).with.offset(10.f);
+        make.centerX.equalTo(self.view);
     }];
 }
 
@@ -72,11 +74,20 @@
 - (NSButton *)startAtLaunchSwitchButton {
     if (!_startAtLaunchSwitchButton) {
         _startAtLaunchSwitchButton = [NSButton new];
-        _startAtLaunchSwitchButton.title = @"Start Backup Bob on launch.";
+        _startAtLaunchSwitchButton.title = @"Start Backup Bob on system startup";
         [_startAtLaunchSwitchButton setButtonType:NSSwitchButton];
     }
 
     return _startAtLaunchSwitchButton;
+}
+
+- (GeneralPreferencesViewModel *)viewModel
+{
+    if (!_viewModel) {
+        _viewModel = [GeneralPreferencesViewModel new];
+    }
+
+    return _viewModel;
 }
 
 

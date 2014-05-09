@@ -6,7 +6,14 @@
 #import "GeneralPreferencesViewModel.h"
 
 
-@implementation GeneralPreferencesViewModel {
+@implementation GeneralPreferencesViewModel
 
+- (id)init
+{
+    if (!(self = [super init])) return nil;
+
+
+    return self;
 }
+
 @end

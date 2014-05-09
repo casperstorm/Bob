@@ -25,7 +25,6 @@
 {
     if (!(self = [super init])) return nil;
 
-    self.notificationsEnabled = YES;
     [self setupBindings];
 
     return self;
@@ -35,45 +34,29 @@
 {
     RACSignal *backupDoneSignal = [[[RACObserve([BackupModel sharedInstance], backupInProgress) distinctUntilChanged] ignore:@YES] skip:1];
     RACSignal *backupStartingSignal = [[[RACObserve([BackupModel sharedInstance], backupInProgress) distinctUntilChanged] ignore:@NO] skip:1];
-    RACSignal *notificationsEnabledSignal = RACObserve(self, notificationsEnabled);
 
-    RACSignal *combinedCompletedBackupSignal = [[RACSignal combineLatest:@[ notificationsEnabledSignal, backupDoneSignal ]] map:^id(RACTuple *tuple) {
-        RACTupleUnpack(NSNumber *notificationsEnabled) = tuple;
-        return notificationsEnabled;
-    }];
-
-    RACSignal *combinedStartingBackupSignal = [[RACSignal combineLatest:@[ notificationsEnabledSignal, backupStartingSignal ]] map:^id(RACTuple *tuple) {
-        RACTupleUnpack(NSNumber *notificationsEnabled) = tuple;
-        return notificationsEnabled;
-    }];
-
-    [self rac_liftSelector:@selector(displayCompletedBackupNotification:) withSignals:combinedCompletedBackupSignal, nil];
-    [self rac_liftSelector:@selector(displayStartingBackupNotification:) withSignals:combinedStartingBackupSignal, nil];
-
+    [self rac_liftSelector:@selector(displayCompletedBackupNotification:) withSignals:backupDoneSignal, nil];
+    [self rac_liftSelector:@selector(displayStartingBackupNotification:) withSignals:backupStartingSignal, nil];
 }
 
-- (void)displayCompletedBackupNotification:(BOOL)display
+- (void)displayCompletedBackupNotification:(id)_
 {
-    if(display) {
-        NSUserNotification *notification = [NSUserNotification new];
-        notification.title = @"Backup done!";
-        notification.informativeText = @"What is this sorcery?";
-        notification.soundName = NSUserNotificationDefaultSoundName;
+    NSUserNotification *notification = [NSUserNotification new];
+    notification.title = @"Backup done!";
+    notification.informativeText = @"What is this sorcery?";
+    notification.soundName = NSUserNotificationDefaultSoundName;
 
-        [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
-    }
+    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
 }
 
-- (void)displayStartingBackupNotification:(BOOL)display
+- (void)displayStartingBackupNotification:(id)_
 {
-    if(display) {
-        NSUserNotification *notification = [NSUserNotification new];
-        notification.title = @"Starting backup...";
-        notification.informativeText = @"What is this sorcery?";
-        notification.soundName = NSUserNotificationDefaultSoundName;
+    NSUserNotification *notification = [NSUserNotification new];
+    notification.title = @"Starting backup...";
+    notification.informativeText = @"What is this sorcery?";
+    notification.soundName = NSUserNotificationDefaultSoundName;
 
-        [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
-    }
+    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
 }
 
 

@@ -8,6 +8,5 @@
 
 
 @interface NotificationsManager : NSObject
-@property (nonatomic, assign) BOOL notificationsEnabled;
 + (NotificationsManager *)sharedInstance;
 @end
