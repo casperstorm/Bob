@@ -62,7 +62,7 @@
 {
     if (!_backupNowCommand) {
         _backupNowCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-            return self.tarsnapClient.startBackup;
+            return self.tarsnapClient.sleep;
         }];
     }
 
