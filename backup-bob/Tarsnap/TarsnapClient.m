@@ -19,7 +19,7 @@
     return self;
 }
 
-- (RACSignal *)makeWithDeltas:(NSArray *)deltas sources:(NSArray *)sources  {
+- (RACSignal *)makeWithDeltas:(NSArray *)deltas folders:(NSArray *)folders  {
     NSString *deltasString = @"--deltas 3h 1d 7d 30d";
     NSString *sourcesString = @"--sources test";
     NSString *targetString = @"--target \"/$name-$date\"";

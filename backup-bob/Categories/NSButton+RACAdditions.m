@@ -3,10 +3,8 @@
 //  Copyright (c) 2013 SHAPE A/S. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "NSButton+RACAdditions.h"
 
-@interface NSTableView (RACAdditions)
 
-- (void)reloadData:(id)_;
-
+@implementation NSButton (RACAdditions)
 @end
