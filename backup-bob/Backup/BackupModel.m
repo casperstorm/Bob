@@ -69,7 +69,7 @@
 - (void)startTimer:(id)_
 {
     // Timer which will launch the backup
-    self.backupTimer = [NSTimer timerWithTimeInterval:(10) target:self selector:@selector(backupTimeFired:) userInfo:nil repeats:NO];
+    self.backupTimer = [NSTimer timerWithTimeInterval:(120) target:self selector:@selector(backupTimeFired:) userInfo:nil repeats:NO];
     [[NSRunLoop mainRunLoop] addTimer:self.backupTimer forMode:NSRunLoopCommonModes];
 }
 
@@ -80,7 +80,7 @@
     if (!_backupNowCommand) {
         _backupNowCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
             [self.backupTimer invalidate];
-            return self.tarsnapClient.sleep;
+            return [self.tarsnapClient makeWithDeltas:nil folders:self.folders];
         }];
     }
 

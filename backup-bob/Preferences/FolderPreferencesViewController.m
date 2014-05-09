@@ -8,11 +8,11 @@
 #import "FolderPreferencesViewModel.h"
 #import "BackupModel.h"
 #import "Folder.h"
-
+#import "NSButton+RACAdditions.h"
 
 @implementation FolderPreferencesViewController {
     FolderPreferencesViewModel *_viewModel;
-
+    NSOutlineView *_folderView;
     NSTableView *_folderTableView;
     NSButton *_addButton;
     NSButton *_removeButton;
@@ -36,8 +36,13 @@
 }
 
 - (void)setupBindings {
-
     [self.folderTableView rac_liftSelector:@selector(reloadData:) withSignals:[RACObserve(_viewModel, folders) distinctUntilChanged], nil];
+
+    RAC(self.removeButton, enabled) = [[[self rac_signalForSelector:@selector(tableViewSelectionDidChange:)] map:^id(RACTuple *tuple) {
+        RACTupleUnpack(NSNotification *notification) = tuple;
+        NSTableView *tableView = notification.object;
+        return @(tableView.numberOfSelectedRows > 0);
+    }] startWith:@(self.folderTableView.numberOfSelectedRows > 0)];
 }
 
 - (void)setupLayout {
@@ -114,16 +119,9 @@
 
         NSMutableArray *folders = [NSMutableArray new];
         for (NSURL *url in files) {
-            NSLog(@"%@", [url path]);
             Folder *folder = [[Folder alloc] initWithPath:[url path] active:YES];
             [folders addObject:folder];
         }
-
-//        for( int i = 0; i < [files count]; i++ ) {
-//            NSString* fileName = [files objectAtIndex:i];
-//            Folder *folder = [[Folder alloc] initWithPath:fileName active:YES];
-//            [folders addObject:folder];
-//        }
 
         [[BackupModel sharedInstance] addFolders:folders];
     }
@@ -173,6 +171,10 @@
     return nil;
 }
 
+- (void)tableViewSelectionDidChange:(NSNotification *)notification {
+}
+
+
 #pragma mark - Views
 
 - (NSTableView *)folderTableView {
@@ -180,6 +182,7 @@
         _folderTableView = [[NSTableView alloc] init];
         _folderTableView.delegate = self;
         _folderTableView.dataSource = self;
+        [_folderTableView setAllowsMultipleSelection:YES];
         [_folderTableView setUsesAlternatingRowBackgroundColors:YES];
 
         NSTableColumn * column1 = [[NSTableColumn alloc] initWithIdentifier:ColumnActiveIdentifier];

@@ -5,8 +5,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSTableView (RACAdditions)
-
-- (void)reloadData:(id)_;
-
+@interface NSButton (RACAdditions)
+@property (assign, nonatomic, getter = isEnabled, setter = setEnabled:) BOOL enabled;
 @end
