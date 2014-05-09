@@ -5,7 +5,6 @@
 
 
 #import "TarsnapClient.h"
-#import "NSDate+TimeAgo.h"
 #import "NSError+ConvenienceCreatorAdditions.h"
 
 @interface TarsnapClient ()

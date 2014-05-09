@@ -20,20 +20,21 @@
 {
     self.statusBarController = [StatusBarController new];
 
-    TarsnapClient *tarsnapClient = [TarsnapClient new];
-    RACSignal *signal = [tarsnapClient startBackup];
+//    TarsnapClient *tarsnapClient = [TarsnapClient new];
+//    RACSignal *signal = [tarsnapClient startBackup];
+//
+//    [signal subscribeNext:^(id x) {
+//        NSLog(@"Next: %@", x);
+//    }];
+//
+//    [signal subscribeError:^(NSError *error) {
+//        NSLog(@"Error: %@", [error localizedDescription]);
+//    }];
+//
+//    [signal subscribeCompleted:^{
+//        NSLog(@"Done");
+//    }];
 
-    [signal subscribeNext:^(id x) {
-        NSLog(@"Next: %@", x);
-    }];
-
-    [signal subscribeError:^(NSError *error) {
-        NSLog(@"Error: %@", [error localizedDescription]);
-    }];
-
-    [signal subscribeCompleted:^{
-        NSLog(@"Done");
-    }];
     [BackupModel sharedInstance];
 }
 

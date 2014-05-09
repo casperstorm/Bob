@@ -6,6 +6,7 @@
 
 #import "StatusBarViewModel.h"
 #import "BackupModel.h"
+#import "SORelativeDateTransformer.h"
 
 @interface StatusBarViewModel ()
 @property (nonatomic, strong) NSString *nextBackupString;
@@ -17,8 +18,15 @@
 {
     if (!(self = [super init])) return nil;
 
-    self.nextBackupString = @"Never";
-    self.lastBackupString = @"Never";
+    RAC(self, nextBackupString) = [RACObserve([BackupModel sharedInstance], nextBackupDate) map:^id(NSDate *nextBackupDate) {
+        NSString *relativeDate = [[SORelativeDateTransformer registeredTransformer] transformedValue:nextBackupDate];
+        return [NSString stringWithFormat:@"Next backup %@", relativeDate];
+    }];
+
+    RAC(self, lastBackupString) = [RACObserve([BackupModel sharedInstance], lastBackupDate) map:^id(NSDate *nextBackupDate) {
+        NSString *relativeDate = [[SORelativeDateTransformer registeredTransformer] transformedValue:nextBackupDate];
+        return [NSString stringWithFormat:@"Last backup %@", relativeDate];
+    }];
 
     return self;
 }
