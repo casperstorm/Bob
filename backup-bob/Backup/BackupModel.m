@@ -120,4 +120,10 @@ static NSString *const BackupModelFoldersKey = @"BackupModelFoldersKey";
     self.folders = allFolders;
 }
 
+- (void)removeFoldersInIndexSet:(NSIndexSet *)set {
+    NSMutableArray *folders = [self.folders mutableCopy];
+    [folders removeObjectsAtIndexes:set];
+    self.folders = folders;
+}
+
 @end

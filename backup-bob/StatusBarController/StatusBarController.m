@@ -39,6 +39,7 @@
 
     NSString *title = @"Preferences";
     _preferencesWindowController = [[MASPreferencesWindowController alloc] initWithViewControllers:controllers title:title];
+    [_preferencesWindowController.window setLevel:NSFloatingWindowLevel];
 }
 
 - (void)setupBindings

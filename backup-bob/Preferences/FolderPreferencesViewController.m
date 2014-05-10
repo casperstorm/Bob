@@ -54,7 +54,11 @@
     }];
 
     [self.folderTableView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.containerScrollView);
+//        make.edges.equalTo(self.containerScrollView);
+        make.top.equalTo(@0);
+        make.bottom.equalTo(@0);
+        make.left.equalTo(@0);
+        make.right.equalTo(@0);
     }];
 
     [self.addButton mas_updateConstraints:^(MASConstraintMaker *make) {
@@ -127,6 +131,11 @@
     }
 }
 
+- (void)removeFilesPressed:(id)sender {
+    NSIndexSet *indexSet = self.folderTableView.selectedRowIndexes;
+    [[BackupModel sharedInstance] removeFoldersInIndexSet:indexSet];
+}
+
 #pragma mark - TableView delegate
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
@@ -190,7 +199,6 @@
         NSTableColumn * column2 = [[NSTableColumn alloc] initWithIdentifier:ColumnPathIdentifier];
         [[column2 headerCell] setStringValue:@"Path"];
         [column1 setWidth:35];
-        [column2 setWidth:60];
         [_folderTableView addTableColumn:column1];
         [_folderTableView addTableColumn:column2];
         [_folderTableView reloadData];
@@ -226,6 +234,7 @@
         _removeButton.image = [NSImage imageNamed:NSImageNameRemoveTemplate];
         [_removeButton setButtonType:NSMomentaryPushInButton];
         [_removeButton setBezelStyle:NSSmallSquareBezelStyle];
+        [_removeButton setAction:@selector(removeFilesPressed:)];
     }
 
     return _removeButton;
