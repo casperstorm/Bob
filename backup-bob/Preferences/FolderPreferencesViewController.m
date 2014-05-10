@@ -54,7 +54,11 @@
     }];
 
     [self.folderTableView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.containerScrollView);
+//        make.edges.equalTo(self.containerScrollView);
+        make.top.equalTo(@0);
+        make.bottom.equalTo(@0);
+        make.left.equalTo(@0);
+        make.right.equalTo(@0);
     }];
 
     [self.addButton mas_updateConstraints:^(MASConstraintMaker *make) {
@@ -195,7 +199,6 @@
         NSTableColumn * column2 = [[NSTableColumn alloc] initWithIdentifier:ColumnPathIdentifier];
         [[column2 headerCell] setStringValue:@"Path"];
         [column1 setWidth:35];
-        [column2 setWidth:60];
         [_folderTableView addTableColumn:column1];
         [_folderTableView addTableColumn:column2];
         [_folderTableView reloadData];
