@@ -75,11 +75,11 @@
     [self.view addSubview:self.autobackupTextField];
 }
 
-- (void)setupBindings {
+- (void)setupBindings
+{
     RAC(self, startAtLaunchSwitchButton.state) = RACObserve(self.viewModel, startAppAtLaunch);
     RAC(self.backupTimerComboBox, selectedIndex) = RACObserve(self.viewModel, updateInterval);
 }
-
 
 #pragma mark -
 #pragma mark MASPreferencesViewController

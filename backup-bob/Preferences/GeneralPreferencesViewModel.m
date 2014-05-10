@@ -45,6 +45,7 @@
 
         return nil;
     }];
+
     RAC(self, updateInterval) = [RACObserve([BackupModel sharedInstance], updateIntervalHours) map:^id(NSNumber *hours) {
         if([hours intValue] == 3 ) {
             return @(AutoUpdateIntervalThreeHour);
@@ -56,9 +57,7 @@
 
         return @(AutoUpdateIntervalThreeHour);
     }];
-
 }
-
 
 #pragma mark - Properties
 

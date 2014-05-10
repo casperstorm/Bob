@@ -8,8 +8,6 @@
 
 
 static NSString *const ColumnActiveIdentifier = @"ActiveIdentifier";
-
 static NSString *const ColumnPathIdentifier = @"PathIdentfier";
-
 @interface FolderPreferencesViewController : NSViewController <MASPreferencesViewController, NSTableViewDataSource, NSTableViewDelegate>
 @end

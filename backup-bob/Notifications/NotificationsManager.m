@@ -44,7 +44,6 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         NSUserNotification *notification = [NSUserNotification new];
         notification.title = @"Backup done!";
-        notification.informativeText = @"What is this sorcery?";
         notification.soundName = NSUserNotificationDefaultSoundName;
 
         [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
@@ -56,7 +55,6 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         NSUserNotification *notification = [NSUserNotification new];
         notification.title = @"Starting backup...";
-        notification.informativeText = @"What is this sorcery?";
         notification.soundName = NSUserNotificationDefaultSoundName;
 
         [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
