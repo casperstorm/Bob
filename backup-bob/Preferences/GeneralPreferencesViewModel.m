@@ -5,15 +5,54 @@
 
 #import "GeneralPreferencesViewModel.h"
 
+static NSString *const GeneralPreferencesStartAppAtLaunchKey = @"GeneralPreferencesStartAppAtLaunchKey";
 
+@interface GeneralPreferencesViewModel ()
+@property (nonatomic, assign) BOOL startAppAtLaunch;
+@end
 @implementation GeneralPreferencesViewModel
 
 - (id)init
 {
     if (!(self = [super init])) return nil;
 
+    [self setupBindings];
 
     return self;
 }
+
+- (void)setupBindings
+{
+//    RAC(self, startAppAtLaunch) = [[self.startAtLaunchCommand.executionSignals flatten] map:^id(NSNumber *value) {
+//        NSLog(@"value = %@", value);
+//        return @([value boolValue]);
+//    }];
+//
+//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//    RACChannelTerminal *currentUserTerminal = RACChannelTo(self, startAppAtLaunch);
+//    RACChannelTerminal *defaultsTerminal = [defaults rac_channelTerminalForKey:GeneralPreferencesStartAppAtLaunchKey];
+//
+//    [[defaultsTerminal map:^id(NSNumber *startAtLaunch) {
+//        return startAtLaunch;
+//    }] subscribe:currentUserTerminal];
+//
+//    [[[currentUserTerminal skip:1] map:^id(NSNumber *startAtLaunch) {
+//        return startAtLaunch;
+//    }] subscribe:defaultsTerminal];
+}
+
+#pragma mark - Properties
+
+- (RACCommand *)startAtLaunchCommand
+{
+    if (!_startAtLaunchCommand) {
+        _startAtLaunchCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+            return [RACSignal return:input];
+        }];
+    }
+
+    return _startAtLaunchCommand;
+}
+
 
 @end
