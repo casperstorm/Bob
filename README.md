@@ -19,7 +19,7 @@ Then you need to install [Tarsnapper](https://github.com/miracle2k/tarsnapper), 
 
 	easy_install tarsnapper
 
-After the installation of both Tarsnap and Tarsnapper you can run and enjoy Bob.
+After the installation of both Tarsnap and Tarsnapper you can enjoy Bob by compiling or downloading the latest [binary](https://github.com/casperstorm/Bob/releases).
 
 ## Screenshot
 
