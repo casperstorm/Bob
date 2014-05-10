@@ -18,6 +18,7 @@ static NSString *const BackupModelAutoUpdateIntervalKey = @"BackupModelAutoUpdat
 @property (nonatomic, strong) NSDate *nextBackupDate;
 @property (nonatomic, strong) NSDate *lastBackupDate;
 @property (nonatomic, strong) NSArray *folders;
+@property (nonatomic, assign) BOOL anyActiveFolders;
 @property (nonatomic, assign) NSTimeInterval backupTimeInterval;
 @end
 @implementation BackupModel {
@@ -38,11 +39,11 @@ static NSString *const BackupModelAutoUpdateIntervalKey = @"BackupModelAutoUpdat
 - (id)init
 {
     if (!(self = [super init])) return nil;
-    [self startTimer:nil];
 
     _folders = [NSMutableArray new];
 
     [self setupBindings];
+    [self startTimer:nil];
 
     return self;
 }
@@ -156,8 +157,10 @@ static NSString *const BackupModelAutoUpdateIntervalKey = @"BackupModelAutoUpdat
     if (!_backupNowCommand) {
         _backupNowCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
             [self endTimer:nil];
-            return [self.tarsnapClient makeWithDeltas:nil folders:self.folders];
-            return nil;
+            if(self.folders.count > 0) {
+                return [self.tarsnapClient makeWithDeltas:nil folders:self.folders];
+            }
+            return [RACSignal return:nil];
         }];
     }
 
