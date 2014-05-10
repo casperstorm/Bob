@@ -5,6 +5,7 @@
 
 #import "GeneralPreferencesViewModel.h"
 #import "SettingsModel.h"
+#import "BackupModel.h"
 
 @interface GeneralPreferencesViewModel ()
 @property (nonatomic, assign) BOOL startAppAtLaunch;
@@ -30,6 +31,13 @@
     }];
 
     RAC(self, startAppAtLaunch) = RACObserve([SettingsModel sharedInstance], startAppAtLaunch);
+
+    /*
+        updateInterval binding to BackupModel.
+    */
+    RAC([BackupModel sharedInstance], updateInterval) = [[[self.updateIntervalCommand.executionSignals flatten] ignore:nil] distinctUntilChanged];
+    RAC(self, updateInterval) = RACObserve([BackupModel sharedInstance], updateInterval);
+
 }
 
 #pragma mark - Properties
@@ -43,6 +51,17 @@
     }
 
     return _startAtLaunchCommand;
+}
+
+- (RACCommand *)updateIntervalCommand
+{
+    if (!_updateIntervalCommand) {
+        _updateIntervalCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+            return [RACSignal return:input];
+        }];
+    }
+
+    return _updateIntervalCommand;
 }
 
 

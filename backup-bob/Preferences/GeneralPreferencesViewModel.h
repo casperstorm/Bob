@@ -4,9 +4,11 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "BackupModel.h"
 
 @interface GeneralPreferencesViewModel : NSObject
 @property (nonatomic, strong) RACCommand *startAtLaunchCommand;
+@property (nonatomic, strong) RACCommand *updateIntervalCommand;
 @property (nonatomic, readonly) BOOL startAppAtLaunch;
+@property (nonatomic, readonly) enum AutoUpdateInterval updateInterval;
 @end

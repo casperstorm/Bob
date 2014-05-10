@@ -18,6 +18,7 @@ static NSString *const BackupModelAutoUpdateIntervalKey = @"BackupModelAutoUpdat
 @property (nonatomic, strong) NSDate *nextBackupDate;
 @property (nonatomic, strong) NSDate *lastBackupDate;
 @property (nonatomic, strong) NSArray *folders;
+@property (nonatomic, assign) NSTimeInterval updateTimeInterval;
 @end
 @implementation BackupModel {
     NSArray *_folders;
@@ -64,26 +65,48 @@ static NSString *const BackupModelAutoUpdateIntervalKey = @"BackupModelAutoUpdat
     // When backup is done, it fires startTimer: again.
     [self rac_liftSelector:@selector(startTimer:) withSignals:backupDoneSignal, nil];
 
-    // Persistent folders
+
+//    RAC(self, updateTimeInterval) = [RACObserve(self, updateInterval) map:^id(NSNumber *number) {
+//        enum AutoUpdateInterval updateInterval = (enum AutoUpdateInterval) [number integerValue];
+//        switch (updateInterval)
+//        {
+//            case AutoUpdateIntervalThreeHour:return @();
+//            case AutoUpdateIntervalFiveHour:break;
+//            case AutoUpdateIntervalSevenHour:break;
+//        }
+//
+//    }];
+
+    // Persistent informations
+    [self persistentFolders];
+    [self persistentAutoUpdate];
+}
+
+- (void)persistentAutoUpdate
+{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    RACChannelTerminal *currentUserTerminal = RACChannelTo(self, folders);
+    RACChannelTerminal *autoUpdateIntervalTerminal = RACChannelTo(self, updateInterval);
+    RACChannelTerminal *defaultsAutoUpdateIntervalTerminal = [defaults rac_channelTerminalForKey:BackupModelAutoUpdateIntervalKey];
+
+    [[autoUpdateIntervalTerminal skip:1] subscribe:defaultsAutoUpdateIntervalTerminal];
+    [defaultsAutoUpdateIntervalTerminal subscribe:autoUpdateIntervalTerminal];
+}
+
+- (void)persistentFolders
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    RACChannelTerminal *currentFolderTerminal = RACChannelTo(self, folders);
     RACChannelTerminal *defaultsTerminal = [defaults rac_channelTerminalForKey:BackupModelFoldersKey];
 
     [[defaultsTerminal map:^id(NSData *data) {
         if (!data) return nil;
         return [NSKeyedUnarchiver unarchiveObjectWithData:data];
-    }] subscribe:currentUserTerminal];
+    }] subscribe:currentFolderTerminal];
 
-    [[[currentUserTerminal skip:1] map:^id(Folder *folder){
+    [[[currentFolderTerminal skip:1] map:^id(Folder *folder){
         return [NSKeyedArchiver archivedDataWithRootObject:folder];
     }] subscribe:defaultsTerminal];
 
-
-    RACChannelTerminal *autoUpdateIntervalTerminal = RACChannelTo(self, updateInterval);
-    RACChannelTerminal *defaultsAutoUpdateIntervalTerminal = [defaults rac_channelTerminalForKey:BackupModelAutoUpdateIntervalKey];
-
-    [autoUpdateIntervalTerminal subscribe:defaultsAutoUpdateIntervalTerminal];
-    [defaultsAutoUpdateIntervalTerminal subscribe:autoUpdateIntervalTerminal];
 }
 
 - (void)backupTimeFired:(id)backupTimeFired {
@@ -95,7 +118,7 @@ static NSString *const BackupModelAutoUpdateIntervalKey = @"BackupModelAutoUpdat
 - (void)startTimer:(id)_
 {
     // Timer which will launch the backup
-    self.backupTimer = [NSTimer timerWithTimeInterval:(1000) target:self selector:@selector(backupTimeFired:) userInfo:nil repeats:NO];
+    self.backupTimer = [NSTimer timerWithTimeInterval:1000000 target:self selector:@selector(backupTimeFired:) userInfo:nil repeats:NO];
     [[NSRunLoop mainRunLoop] addTimer:self.backupTimer forMode:NSRunLoopCommonModes];
 }
 

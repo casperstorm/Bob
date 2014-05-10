@@ -77,9 +77,13 @@
 
 - (void)setupBindings {
     RAC(self, startAtLaunchSwitchButton.state) = RACObserve(self.viewModel, startAppAtLaunch);
-    NSUInteger selectedIndex = [[BackupModel sharedInstance] updateInterval];
-    RAC(self.backupTimerComboBox, selectedIndex) = [RACObserve([BackupModel sharedInstance], updateInterval) startWith:@(selectedIndex)];
+    RAC(self.backupTimerComboBox, selectedIndex) = RACObserve(self.viewModel, updateInterval);
+
+    [[RACObserve(self.backupTimerComboBox, selectedIndex) distinctUntilChanged] subscribeNext:^(id x) {
+        NSLog(@"x = %@", x);
+    }];
 }
+
 
 #pragma mark -
 #pragma mark MASPreferencesViewController
@@ -199,7 +203,7 @@
 {
     NSComboBox *comboBox = [notification object];
     enum AutoUpdateInterval updateInterval = (enum AutoUpdateInterval) comboBox.indexOfSelectedItem;
-    [[BackupModel sharedInstance] setUpdateInterval:updateInterval];
+    [self.viewModel.updateIntervalCommand execute:@(updateInterval)];
 }
 
 #pragma mark - Helpers
