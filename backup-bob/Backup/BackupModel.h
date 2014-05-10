@@ -6,6 +6,11 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ENUM(NSInteger , AutoUpdateInterval) {
+    AutoUpdateIntervalThreeHour = 0,
+    AutoUpdateIntervalFiveHour,
+    AutoUpdateIntervalSevenHour,
+};
 
 @interface BackupModel : NSObject
 + (BackupModel *)sharedInstance;
@@ -16,6 +21,7 @@
 
 - (void)removeFoldersInIndexSet:(NSIndexSet *)set;
 
+@property (nonatomic) enum AutoUpdateInterval updateInterval;
 @property (nonatomic, readonly) NSDate *nextBackupDate;
 @property (nonatomic, readonly) NSDate *lastBackupDate;
 @property (nonatomic, readonly) BOOL backupInProgress;

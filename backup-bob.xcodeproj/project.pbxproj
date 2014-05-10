@@ -21,6 +21,7 @@
 		659F208619DF52FBE92EA0A4 /* SettingsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 659F21B95B9C584301B1FD73 /* SettingsModel.m */; };
 		659F225D00D294B47C818944 /* NSTableView+RACAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 659F2BD742AFE49E32DBC8F7 /* NSTableView+RACAdditions.m */; };
 		659F228F7368190C2FBE5860 /* FolderPreferencesViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 659F24DF531DB072E963760B /* FolderPreferencesViewModel.m */; };
+		659F262ED64F1029D51D97C5 /* NSComboBox+RACAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 659F21F9FE84F642FEB5E259 /* NSComboBox+RACAdditions.m */; };
 		659F26320DCBA62162FE978C /* FolderPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 659F23A3E60B7D304C652414 /* FolderPreferencesViewController.m */; };
 		659F27A3A2BB20C9F4B6D94C /* NSError+ConvenienceCreatorAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 659F240CEEC91F34BB1566A9 /* NSError+ConvenienceCreatorAdditions.m */; };
 		659F28736A38432422732E4B /* NSButton+RACAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 659F28A6203BCF401E636C4E /* NSButton+RACAdditions.m */; };
@@ -74,11 +75,13 @@
 		5B50C1040A8746CE8C176E14 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		659F200E938F3D064C49C5C0 /* Folder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Folder.m; sourceTree = "<group>"; };
 		659F21B95B9C584301B1FD73 /* SettingsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsModel.m; sourceTree = "<group>"; };
+		659F21F9FE84F642FEB5E259 /* NSComboBox+RACAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSComboBox+RACAdditions.m"; sourceTree = "<group>"; };
 		659F226374C5BE1E7517B01B /* FolderPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FolderPreferencesViewController.h; sourceTree = "<group>"; };
 		659F23A3E60B7D304C652414 /* FolderPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FolderPreferencesViewController.m; sourceTree = "<group>"; };
 		659F23F27889E163C8C34F53 /* FolderPreferencesViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FolderPreferencesViewModel.h; sourceTree = "<group>"; };
 		659F240CEEC91F34BB1566A9 /* NSError+ConvenienceCreatorAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+ConvenienceCreatorAdditions.m"; sourceTree = "<group>"; };
 		659F24DF531DB072E963760B /* FolderPreferencesViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FolderPreferencesViewModel.m; sourceTree = "<group>"; };
+		659F252AEFFE7E6F0DF77401 /* NSComboBox+RACAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSComboBox+RACAdditions.h"; sourceTree = "<group>"; };
 		659F27C98E4718CFB62B873C /* GeneralPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneralPreferencesViewController.h; sourceTree = "<group>"; };
 		659F28A6203BCF401E636C4E /* NSButton+RACAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSButton+RACAdditions.m"; sourceTree = "<group>"; };
 		659F28C8671E3D63351DC3BB /* NSButton+RACAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSButton+RACAdditions.h"; sourceTree = "<group>"; };
@@ -279,6 +282,8 @@
 				659F2F65FD251E32A25D5913 /* NSTableView+RACAdditions.h */,
 				659F28A6203BCF401E636C4E /* NSButton+RACAdditions.m */,
 				659F28C8671E3D63351DC3BB /* NSButton+RACAdditions.h */,
+				659F21F9FE84F642FEB5E259 /* NSComboBox+RACAdditions.m */,
+				659F252AEFFE7E6F0DF77401 /* NSComboBox+RACAdditions.h */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -477,6 +482,7 @@
 				AF7AB5E013CDD1B72E74E4DC /* NotificationsManager.m in Sources */,
 				659F208619DF52FBE92EA0A4 /* SettingsModel.m in Sources */,
 				AF7AB41E30240D14FC6A10D6 /* LogPreferencesViewController.m in Sources */,
+				659F262ED64F1029D51D97C5 /* NSComboBox+RACAdditions.m in Sources */,
 				AF7ABF222936C922049C2907 /* LogPreferencesViewModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

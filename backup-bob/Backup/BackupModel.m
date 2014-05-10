@@ -9,6 +9,7 @@
 #import "Folder.h"
 
 static NSString *const BackupModelFoldersKey = @"BackupModelFoldersKey";
+static NSString *const BackupModelAutoUpdateIntervalKey = @"BackupModelAutoUpdateIntervalKey";
 
 @interface BackupModel ()
 @property (nonatomic, strong) TarsnapClient *tarsnapClient;
@@ -61,7 +62,6 @@ static NSString *const BackupModelFoldersKey = @"BackupModelFoldersKey";
     [self rac_liftSelector:@selector(startTimer:) withSignals:backupDoneSignal, nil];
 
     // Persistent folders
-
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     RACChannelTerminal *currentUserTerminal = RACChannelTo(self, folders);
     RACChannelTerminal *defaultsTerminal = [defaults rac_channelTerminalForKey:BackupModelFoldersKey];
@@ -74,10 +74,16 @@ static NSString *const BackupModelFoldersKey = @"BackupModelFoldersKey";
     [[[currentUserTerminal skip:1] map:^id(Folder *folder){
         return [NSKeyedArchiver archivedDataWithRootObject:folder];
     }] subscribe:defaultsTerminal];
+
+
+    RACChannelTerminal *autoUpdateIntervalTerminal = RACChannelTo(self, updateInterval);
+    RACChannelTerminal *defaultsAutoUpdateIntervalTerminal = [defaults rac_channelTerminalForKey:BackupModelAutoUpdateIntervalKey];
+
+    [autoUpdateIntervalTerminal subscribe:defaultsAutoUpdateIntervalTerminal];
+    [defaultsAutoUpdateIntervalTerminal subscribe:autoUpdateIntervalTerminal];
 }
 
-- (void)backupTimeFired:(id)backupTimeFired
-{
+- (void)backupTimeFired:(id)backupTimeFired {
     [self.backupNowCommand execute:nil];
 }
 
