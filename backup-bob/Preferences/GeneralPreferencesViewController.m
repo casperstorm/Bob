@@ -25,7 +25,7 @@
 - (id)init {
     self = [super init];
     if (self) {
-        NSView *view = [[NSView alloc] initWithFrame:NSMakeRect(0, 0, 300, 300)];
+        NSView *view = [[NSView alloc] initWithFrame:NSMakeRect(0, 0, 300, 130)];
         self.comboBoxArray = @[ @"3 hours", @"5 hours", @"7 hours" ];
 
         [self setView:view];

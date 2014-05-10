@@ -5,10 +5,8 @@
 
 #import "SettingsModel.h"
 
-
-@implementation SettingsModel {
-
-}
+static NSString *const GeneralPreferencesStartAppAtLaunchKey = @"GeneralPreferencesStartAppAtLaunchKey";
+@implementation SettingsModel
 
 + (SettingsModel *)sharedInstance {
     static SettingsModel *sharedInstance = nil;
@@ -24,7 +22,50 @@
     return sharedInstance;
 }
 
--(void)addAppAsLoginItem{
+- (id)init
+{
+    if (!(self = [super init])) return nil;
+
+    [self setupBindings];
+
+    return self;
+}
+
+- (void)setupBindings
+{
+    [self persistentStartAppAtLaunch];
+
+    RACSignal *addToLaunchSignal = RACObserve(self, startAppAtLaunch);
+    [self rac_liftSelector:@selector(setStartOnLaunch:) withSignals:addToLaunchSignal, nil];
+}
+
+- (void)persistentStartAppAtLaunch
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    RACChannelTerminal *currentUserTerminal = RACChannelTo(self, startAppAtLaunch);
+    RACChannelTerminal *defaultsTerminal = [defaults rac_channelTerminalForKey:GeneralPreferencesStartAppAtLaunchKey];
+
+    [[[defaultsTerminal map:^id(NSNumber *startAtLaunch) {
+        return startAtLaunch;
+    }] ignore:nil] subscribe:currentUserTerminal];
+
+    [[[currentUserTerminal skip:1] map:^id(NSNumber *startAtLaunch) {
+        return startAtLaunch;
+    }] subscribe:defaultsTerminal];
+}
+
+
+- (void)setStartOnLaunch:(BOOL)onLaunch
+{
+    if(onLaunch) {
+        [self addAppAsLoginItem];
+    } else if(!onLaunch) {
+        [self deleteAppFromLoginItem];
+    }
+}
+
+-(void)addAppAsLoginItem
+{
     NSString * appPath = [[NSBundle mainBundle] bundlePath];
     CFURLRef url = (__bridge CFURLRef)[NSURL fileURLWithPath:appPath];
 
@@ -42,7 +83,7 @@
     CFRelease(loginItems);
 }
 
--(void)deleteAppFromLoginItem{
+-(void)deleteAppFromLoginItem {
     NSString * appPath = [[NSBundle mainBundle] bundlePath];
 
     CFURLRef url = (__bridge CFURLRef)[NSURL fileURLWithPath:appPath];
