@@ -23,6 +23,7 @@
         if(running) {
             return [next stringByAppendingString:running];
         }
+
         return next;
     }];
 }

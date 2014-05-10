@@ -40,6 +40,9 @@
 
 - (void)setupBindings {
     RAC(self.textView, string) = [[RACObserve(self.viewModel, logString) ignore:nil] deliverOn:[RACScheduler mainThreadScheduler]];
+        if(log != nil) { return log; }
+        return @"No logs yet";;
+    }];
 }
 
 #pragma mark -
