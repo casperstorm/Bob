@@ -6,6 +6,8 @@
 #import "GeneralPreferencesViewController.h"
 #import "GeneralPreferencesViewModel.h"
 #import "View+MASAdditions.h"
+#import "BackupModel.h"
+#import "NSComboBox+RACAdditions.h"
 
 @interface GeneralPreferencesViewController () <NSComboBoxDelegate>
 @property (nonatomic, readonly) GeneralPreferencesViewModel *viewModel;
@@ -73,9 +75,10 @@
     [self.view addSubview:self.autobackupTextField];
 }
 
-- (void)setupBindings
-{
+- (void)setupBindings {
     RAC(self, startAtLaunchSwitchButton.state) = RACObserve(self.viewModel, startAppAtLaunch);
+    NSUInteger selectedIndex = [[BackupModel sharedInstance] updateInterval];
+    RAC(self.backupTimerComboBox, selectedIndex) = [RACObserve([BackupModel sharedInstance], updateInterval) startWith:@(selectedIndex)];
 }
 
 #pragma mark -
@@ -195,9 +198,8 @@
 - (void)comboBoxSelectionDidChange:(NSNotification *)notification
 {
     NSComboBox *comboBox = [notification object];
-    NSString *strValue = [comboBox itemObjectValueAtIndex:[comboBox indexOfSelectedItem]];
-
-    NSLog(@"%@", strValue);
+    enum AutoUpdateInterval updateInterval = (enum AutoUpdateInterval) comboBox.indexOfSelectedItem;
+    [[BackupModel sharedInstance] setUpdateInterval:updateInterval];
 }
 
 #pragma mark - Helpers
