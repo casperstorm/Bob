@@ -13,7 +13,6 @@ static NSString *const BackupModelAutoUpdateIntervalKey = @"BackupModelAutoUpdat
 static NSString *const BackupModelLastBackupDateKey = @"BackupModelLastBackupDateKey";
 
 @interface BackupModel ()
-@property (nonatomic, strong) TarsnapClient *tarsnapClient;
 @property (nonatomic, strong) NSTimer *backupTimer;
 @property (nonatomic, assign) BOOL backupInProgress;
 @property (nonatomic, strong) NSDate *nextBackupDate;
@@ -169,22 +168,14 @@ static NSString *const BackupModelLastBackupDateKey = @"BackupModelLastBackupDat
         _backupNowCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
             [self endTimer:nil];
             if(self.folders.count > 0) {
-                return [self.tarsnapClient makeWithDeltas:nil folders:self.folders];
+                TarsnapClient *tarsnapClient = [TarsnapClient new];
+                return [tarsnapClient makeWithDeltas:nil folders:self.folders];
             }
             return [RACSignal return:nil];
         }];
     }
 
     return _backupNowCommand;
-}
-
-- (TarsnapClient *)tarsnapClient
-{
-    if (!_tarsnapClient) {
-        _tarsnapClient = [TarsnapClient new];
-    }
-
-    return _tarsnapClient;
 }
 
 - (void)addFolders:(NSArray *)folders {

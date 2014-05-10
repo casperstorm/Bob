@@ -60,7 +60,7 @@
 
 - (RACSignal *)performCommandWithLaunchPath:(NSString *)launchPath arguments:(NSArray *)arguments environment:(NSDictionary *)environment {
     return [RACSignal createSignal:^RACDisposable *(id <RACSubscriber> subscriber) {
-        NSTask *task;
+            NSTask *task;
         task = [[NSTask alloc] init];
         [task setLaunchPath:launchPath];
         [task setArguments:arguments];
@@ -74,7 +74,7 @@
 
         NSFileHandle *errorFile = [errorPipe fileHandleForReading];
 
-        RACSignal *dataSignal =[[NSNotificationCenter defaultCenter] rac_notifyUntilDealloc:NSFileHandleDataAvailableNotification];
+        RACSignal *dataSignal = [self rac_notifyUntilDealloc:NSFileHandleDataAvailableNotification];
 
         [dataSignal subscribeNext:^(NSNotification *notification) {
             NSFileHandle *fileHandle = notification.object;
@@ -94,5 +94,6 @@
         return nil;
     }];
 }
+
 
 @end
