@@ -10,6 +10,7 @@
 
 static NSString *const BackupModelFoldersKey = @"BackupModelFoldersKey";
 static NSString *const BackupModelAutoUpdateIntervalKey = @"BackupModelAutoUpdateIntervalKey";
+static NSString *const BackupModelLastBackupDateKey = @"BackupModelLastBackupDateKey";
 
 @interface BackupModel ()
 @property (nonatomic, strong) TarsnapClient *tarsnapClient;
@@ -94,6 +95,17 @@ static NSString *const BackupModelAutoUpdateIntervalKey = @"BackupModelAutoUpdat
     */
     [self persistentFolders];
     [self persistentAutoUpdate];
+    [self persistentLastBackupDate];
+}
+
+- (void)persistentLastBackupDate
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    RACChannelTerminal *lastBackupDateTerminal = RACChannelTo(self, lastBackupDate);
+    RACChannelTerminal *defaultsAutoUpdateIntervalTerminal = [defaults rac_channelTerminalForKey:BackupModelLastBackupDateKey];
+
+    [[lastBackupDateTerminal skip:1] subscribe:defaultsAutoUpdateIntervalTerminal];
+    [defaultsAutoUpdateIntervalTerminal subscribe:lastBackupDateTerminal];
 }
 
 - (void)persistentAutoUpdate
