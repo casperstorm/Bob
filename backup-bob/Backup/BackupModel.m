@@ -40,7 +40,6 @@ static NSString *const BackupModelFoldersKey = @"BackupModelFoldersKey";
 
     _folders = [NSMutableArray new];
 
-    NSLog(@"Init..");
     [self setupBindings];
 
     return self;
@@ -87,7 +86,7 @@ static NSString *const BackupModelFoldersKey = @"BackupModelFoldersKey";
 - (void)startTimer:(id)_
 {
     // Timer which will launch the backup
-    self.backupTimer = [NSTimer timerWithTimeInterval:(120) target:self selector:@selector(backupTimeFired:) userInfo:nil repeats:NO];
+    self.backupTimer = [NSTimer timerWithTimeInterval:(1000) target:self selector:@selector(backupTimeFired:) userInfo:nil repeats:NO];
     [[NSRunLoop mainRunLoop] addTimer:self.backupTimer forMode:NSRunLoopCommonModes];
 }
 

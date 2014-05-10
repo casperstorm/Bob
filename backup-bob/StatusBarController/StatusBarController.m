@@ -9,6 +9,7 @@
 #import "MASPreferencesWindowController.h"
 #import "GeneralPreferencesViewController.h"
 #import "FolderPreferencesViewController.h"
+#import "LogPreferencesViewController.h"
 
 @interface StatusBarController ()
 @property (nonatomic, strong) NSStatusItem *statusItem;
@@ -35,7 +36,8 @@
 - (void)setupPreferences {
     GeneralPreferencesViewController *generalPreferencesViewController = [GeneralPreferencesViewController new];
     FolderPreferencesViewController *folderPreferencesViewController = [FolderPreferencesViewController new];
-    NSArray *controllers = @[generalPreferencesViewController, folderPreferencesViewController];
+    LogPreferencesViewController *logPreferencesViewController = [LogPreferencesViewController new];
+    NSArray *controllers = @[generalPreferencesViewController, folderPreferencesViewController, logPreferencesViewController];
 
     NSString *title = @"Preferences";
     _preferencesWindowController = [[MASPreferencesWindowController alloc] initWithViewControllers:controllers title:title];

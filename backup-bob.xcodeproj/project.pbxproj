@@ -29,12 +29,14 @@
 		659F2C20D40243BB9DBAC4EB /* TarsnapClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 659F2A0EE0B45F59CF5349D7 /* TarsnapClient.m */; };
 		659F2C20EE047879C45D40D6 /* GeneralPreferencesViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 659F2C4F8CE0A325D9F0F5A2 /* GeneralPreferencesViewModel.m */; };
 		AF7AB373073D815469BFB252 /* bob-selected_360.png in Resources */ = {isa = PBXBuildFile; fileRef = AF7AB7061B721770BCD22DB3 /* bob-selected_360.png */; };
+		AF7AB41E30240D14FC6A10D6 /* LogPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF7ABFBC75AEB2B133DE9E69 /* LogPreferencesViewController.m */; };
 		AF7AB5C63AC4C801AAAADF9E /* bob-retina_360.png in Resources */ = {isa = PBXBuildFile; fileRef = AF7AB92BDA4AD8AFCDF9F57D /* bob-retina_360.png */; };
 		AF7AB5E013CDD1B72E74E4DC /* NotificationsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AF7AB65A89B68C44B03595E4 /* NotificationsManager.m */; };
 		AF7AB6677287149CD3796015 /* StatusBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF7AB2A800442D9E7E2F3DCD /* StatusBarController.m */; };
 		AF7ABA290E6F2A987F6B6505 /* BackupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AF7ABC03EEF3FF74ABABF4CB /* BackupModel.m */; };
 		AF7ABCAF4ACBBBE4FE4F8A16 /* StatusBarViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AF7ABBBA6F7248E8D756BC93 /* StatusBarViewModel.m */; };
 		AF7ABE87761A73514189BFDD /* bob-normal_360.png in Resources */ = {isa = PBXBuildFile; fileRef = AF7ABF3940A2857E260136AA /* bob-normal_360.png */; };
+		AF7ABF222936C922049C2907 /* LogPreferencesViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AF7AB2677858C7AF7275BFEF /* LogPreferencesViewModel.m */; };
 		F9163E9B2017457F8BA7B180 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B50C1040A8746CE8C176E14 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -90,8 +92,11 @@
 		659F2E7025F9A9EB5016A84F /* GeneralPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralPreferencesViewController.m; sourceTree = "<group>"; };
 		659F2F30EBD6D9530787FD7D /* Folder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Folder.h; sourceTree = "<group>"; };
 		659F2F65FD251E32A25D5913 /* NSTableView+RACAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTableView+RACAdditions.h"; sourceTree = "<group>"; };
+		AF7AB008237A61ECE62454F4 /* LogPreferencesViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogPreferencesViewModel.h; sourceTree = "<group>"; };
+		AF7AB2677858C7AF7275BFEF /* LogPreferencesViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogPreferencesViewModel.m; sourceTree = "<group>"; };
 		AF7AB2A800442D9E7E2F3DCD /* StatusBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusBarController.m; sourceTree = "<group>"; };
 		AF7AB2ED9ED488450F07D5AE /* StatusBarViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusBarViewModel.h; sourceTree = "<group>"; };
+		AF7AB548088A83B163B61E8C /* LogPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogPreferencesViewController.h; sourceTree = "<group>"; };
 		AF7AB65A89B68C44B03595E4 /* NotificationsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationsManager.m; sourceTree = "<group>"; };
 		AF7AB69644AA702450D6AC69 /* BackupModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackupModel.h; sourceTree = "<group>"; };
 		AF7AB7061B721770BCD22DB3 /* bob-selected_360.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bob-selected_360.png"; sourceTree = "<group>"; };
@@ -101,6 +106,7 @@
 		AF7ABBBA6F7248E8D756BC93 /* StatusBarViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusBarViewModel.m; sourceTree = "<group>"; };
 		AF7ABC03EEF3FF74ABABF4CB /* BackupModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackupModel.m; sourceTree = "<group>"; };
 		AF7ABF3940A2857E260136AA /* bob-normal_360.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bob-normal_360.png"; sourceTree = "<group>"; };
+		AF7ABFBC75AEB2B133DE9E69 /* LogPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogPreferencesViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -238,6 +244,10 @@
 				659F226374C5BE1E7517B01B /* FolderPreferencesViewController.h */,
 				659F24DF531DB072E963760B /* FolderPreferencesViewModel.m */,
 				659F23F27889E163C8C34F53 /* FolderPreferencesViewModel.h */,
+				AF7ABFBC75AEB2B133DE9E69 /* LogPreferencesViewController.m */,
+				AF7AB548088A83B163B61E8C /* LogPreferencesViewController.h */,
+				AF7AB2677858C7AF7275BFEF /* LogPreferencesViewModel.m */,
+				AF7AB008237A61ECE62454F4 /* LogPreferencesViewModel.h */,
 			);
 			path = Preferences;
 			sourceTree = "<group>";
@@ -466,6 +476,8 @@
 				659F28736A38432422732E4B /* NSButton+RACAdditions.m in Sources */,
 				AF7AB5E013CDD1B72E74E4DC /* NotificationsManager.m in Sources */,
 				659F208619DF52FBE92EA0A4 /* SettingsModel.m in Sources */,
+				AF7AB41E30240D14FC6A10D6 /* LogPreferencesViewController.m in Sources */,
+				AF7ABF222936C922049C2907 /* LogPreferencesViewModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
