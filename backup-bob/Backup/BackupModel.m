@@ -50,6 +50,9 @@ static NSString *const BackupModelAutoUpdateIntervalKey = @"BackupModelAutoUpdat
 {
     RAC(self, nextBackupDate) = RACObserve(self, backupTimer.fireDate);
 
+//    RAC(self, backupLog) = [self.backupNowCommand. map:^id(id value) {
+//        return value;
+//    }];
     // Binds the executing signal of the backupNowCommand so we know when we are backing up.
     RAC(self, backupInProgress) = self.backupNowCommand.executing;
 

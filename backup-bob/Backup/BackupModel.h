@@ -13,17 +13,17 @@ NS_ENUM(NSInteger , AutoUpdateInterval) {
 };
 
 @interface BackupModel : NSObject
-+ (BackupModel *)sharedInstance;
-
-- (void)addFolders:(NSArray *)folders;
 
 @property (nonatomic, strong) RACCommand *backupNowCommand;
-
-- (void)removeFoldersInIndexSet:(NSIndexSet *)set;
-
 @property (nonatomic) enum AutoUpdateInterval updateInterval;
 @property (nonatomic, readonly) NSDate *nextBackupDate;
 @property (nonatomic, readonly) NSDate *lastBackupDate;
 @property (nonatomic, readonly) BOOL backupInProgress;
 @property (nonatomic, readonly) NSArray *folders;
+@property (nonatomic, readonly) NSString *backupLog;
+
++ (BackupModel *)sharedInstance;
+- (void)addFolders:(NSArray *)folders;
+- (void)removeFoldersInIndexSet:(NSIndexSet *)set;
+
 @end

@@ -21,7 +21,7 @@
 }
 
 - (RACSignal *)makeWithDeltas:(NSArray *)deltas folders:(NSArray *)folders  {
-    if(folders.count==0) return nil;
+//    if(folders.count==0) return nil;
 
     NSMutableArray *arguments = [NSMutableArray new];
     [arguments addObjectsFromArray:@[@"--deltas", @"3h", @"1d", @"7d", @"30d"]];
@@ -84,13 +84,9 @@
             NSString *errorString = [[NSString alloc] initWithData:errorOutputData encoding: NSUTF8StringEncoding];
 
             [subscriber sendNext:output];
+            [subscriber sendNext:errorString];
 
-            if(errorString.length) {
-                NSError *error = [NSError errorWithDescription:errorString code:1000];
-                [subscriber sendError:error];
-            } else {
-                [subscriber sendCompleted];
-            }
+            [subscriber sendCompleted];
         });
 
         return nil;
