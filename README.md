@@ -21,6 +21,9 @@ Then you need to install [Tarsnapper](https://github.com/miracle2k/tarsnapper), 
 
 After the installation of both Tarsnap and Tarsnapper you can run and enjoy Bob.
 
+## Screenshot
+
+![](https://raw.githubusercontent.com/casperstorm/casperstorm.github.io/master/img/bob.png)
 
 ## License
 
