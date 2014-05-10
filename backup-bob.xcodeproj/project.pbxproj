@@ -191,7 +191,6 @@
 				02D6F6C8191BE4CF00314446 /* Supporting Files */,
 				AF7ABC249C10576F64C19745 /* StatusBarController */,
 				AF7AB6F23261931FEF8E27D1 /* Backup */,
-				659F2AD9C1FE20000082C703,
 				659F26E853029B07C1F520D7 /* Preferences */,
 				AF7AB43EF24159FBEC16C7E1 /* UI */,
 				659F2D8C9D091C43BDC5D38F /* Categories */,
@@ -402,8 +401,6 @@
 			mainGroup = 02D6F6B5191BE4CF00314446;
 			productRefGroup = 02D6F6BF191BE4CF00314446 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-			);
 			projectRoot = "";
 			targets = (
 				02D6F6BD191BE4CF00314446 /* backup-bob */,
@@ -712,6 +709,7 @@
 				02D6F6F1191BE4CF00314446 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		02D6F6F2191BE4CF00314446 /* Build configuration list for PBXNativeTarget "backup-bobTests" */ = {
 			isa = XCConfigurationList;
@@ -720,6 +718,7 @@
 				02D6F6F4191BE4CF00314446 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
