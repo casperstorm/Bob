@@ -7,6 +7,5 @@
 #import <Foundation/Foundation.h>
 
 
-@interface LogPreferencesViewModel : NSObject
-@property (nonatomic, readonly) NSString *logString;
+@interface PaddingTextView : NSTextView
 @end

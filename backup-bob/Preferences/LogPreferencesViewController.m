@@ -6,10 +6,12 @@
 
 #import "LogPreferencesViewController.h"
 #import "LogPreferencesViewModel.h"
+#import "PaddingTextView.h"
 
 @interface LogPreferencesViewController ()
 @property (nonatomic, readonly) LogPreferencesViewModel *viewModel;
-@property (nonatomic, strong) NSTextView *textView;
+@property (nonatomic, strong) PaddingTextView *textView;
+@property (nonatomic, strong) NSScrollView *containerScrollView;
 @end
 @implementation LogPreferencesViewController
 {
@@ -23,7 +25,6 @@
 
         [self setView:view];
         [self setupSubviews];
-        [self setupLayout];
 
         [self setupBindings];
     }
@@ -31,19 +32,15 @@
     return self;
 }
 
-- (void)setupLayout
-{
-
-}
-
 - (void)setupSubviews
 {
-    [self.view addSubview:self.textView];
+    [self.view addSubview:self.containerScrollView];
+    [self.containerScrollView setDocumentView:self.textView];
 }
 
 - (void)setupBindings
 {
-
+    RAC(self.textView, string) = [RACObserve(self.viewModel, logString) ignore:nil];
 }
 
 #pragma mark -
@@ -82,16 +79,26 @@
     return _viewModel;
 }
 
-- (NSTextView *)textView
+- (PaddingTextView *)textView
 {
     if (!_textView) {
-        _textView = [[NSTextView alloc] initWithFrame:self.view.bounds];
+        _textView = [[PaddingTextView alloc] initWithFrame:self.containerScrollView.bounds];
         [_textView setEditable:NO];
-        [_textView setString:@"haidaoiwdjoawjdoa awdjaoijwd aoijdwoaijwdoijoijo"];
     }
 
     return _textView;
 }
+
+- (NSScrollView *)containerScrollView {
+    if(!_containerScrollView) {
+        CGRect frame = CGRectInset(self.view.bounds, 0, 0);
+        _containerScrollView = [[NSScrollView alloc] initWithFrame:frame];
+        [_containerScrollView setHasVerticalScroller:YES];
+    }
+
+    return _containerScrollView;
+}
+
 
 
 @end

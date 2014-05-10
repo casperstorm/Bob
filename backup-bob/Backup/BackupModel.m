@@ -120,6 +120,13 @@ static NSString *const BackupModelAutoUpdateIntervalKey = @"BackupModelAutoUpdat
         return [NSKeyedArchiver archivedDataWithRootObject:folder];
     }] subscribe:defaultsTerminal];
 
+
+
+    /*
+        Binds to the backupLog
+    */
+
+    RAC(self, backupLog) = [self.backupNowCommand.executionSignals flatten];
 }
 
 - (void)backupTimeFired:(id)backupTimeFired {
@@ -150,6 +157,7 @@ static NSString *const BackupModelAutoUpdateIntervalKey = @"BackupModelAutoUpdat
         _backupNowCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
             [self endTimer:nil];
             return [self.tarsnapClient makeWithDeltas:nil folders:self.folders];
+            return nil;
         }];
     }
 
