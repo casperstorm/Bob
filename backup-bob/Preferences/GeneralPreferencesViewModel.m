@@ -23,22 +23,24 @@ static NSString *const GeneralPreferencesStartAppAtLaunchKey = @"GeneralPreferen
 
 - (void)setupBindings
 {
-//    RAC(self, startAppAtLaunch) = [[self.startAtLaunchCommand.executionSignals flatten] map:^id(NSNumber *value) {
-//        NSLog(@"value = %@", value);
-//        return @([value boolValue]);
-//    }];
-//
-//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//    RACChannelTerminal *currentUserTerminal = RACChannelTo(self, startAppAtLaunch);
-//    RACChannelTerminal *defaultsTerminal = [defaults rac_channelTerminalForKey:GeneralPreferencesStartAppAtLaunchKey];
-//
-//    [[defaultsTerminal map:^id(NSNumber *startAtLaunch) {
-//        return startAtLaunch;
-//    }] subscribe:currentUserTerminal];
-//
-//    [[[currentUserTerminal skip:1] map:^id(NSNumber *startAtLaunch) {
-//        return startAtLaunch;
-//    }] subscribe:defaultsTerminal];
+    /*
+        startAppAtLaunch binding and saving.
+    */
+    RAC(self, startAppAtLaunch) = [[[self.startAtLaunchCommand.executionSignals flatten] ignore:nil] map:^id(NSNumber *value) {
+        return @([value boolValue]);
+    }];
+
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    RACChannelTerminal *currentUserTerminal = RACChannelTo(self, startAppAtLaunch);
+    RACChannelTerminal *defaultsTerminal = [defaults rac_channelTerminalForKey:GeneralPreferencesStartAppAtLaunchKey];
+
+    [[[defaultsTerminal map:^id(NSNumber *startAtLaunch) {
+        return startAtLaunch;
+    }] ignore:nil] subscribe:currentUserTerminal];
+
+    [[[currentUserTerminal skip:1] map:^id(NSNumber *startAtLaunch) {
+        return startAtLaunch;
+    }] subscribe:defaultsTerminal];
 }
 
 #pragma mark - Properties
