@@ -6,6 +6,7 @@
 
 #import "BackupModel.h"
 #import "TarsnapClient.h"
+#import "Folder.h"
 
 @interface BackupModel ()
 @property (nonatomic, strong) TarsnapClient *tarsnapClient;
@@ -100,6 +101,12 @@
     NSMutableArray *allFolders = [NSMutableArray arrayWithArray:_folders];
     [allFolders addObjectsFromArray:folders];
     self.folders = allFolders;
+}
+
+- (void)removeFoldersInIndexSet:(NSIndexSet *)set {
+    NSMutableArray *folders = [self.folders mutableCopy];
+    [folders removeObjectsAtIndexes:set];
+    self.folders = folders;
 }
 
 @end

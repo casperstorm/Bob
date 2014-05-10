@@ -127,6 +127,11 @@
     }
 }
 
+- (void)removeFilesPressed:(id)sender {
+    NSIndexSet *indexSet = self.folderTableView.selectedRowIndexes;
+    [[BackupModel sharedInstance] removeFoldersInIndexSet:indexSet];
+}
+
 #pragma mark - TableView delegate
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
@@ -226,6 +231,7 @@
         _removeButton.image = [NSImage imageNamed:NSImageNameRemoveTemplate];
         [_removeButton setButtonType:NSMomentaryPushInButton];
         [_removeButton setBezelStyle:NSSmallSquareBezelStyle];
+        [_removeButton setAction:@selector(removeFilesPressed:)];
     }
 
     return _removeButton;
