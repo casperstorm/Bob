@@ -40,7 +40,10 @@
 
 - (void)setupBindings
 {
-    RAC(self.textView, string) = [RACObserve(self.viewModel, logString) ignore:nil];
+    RAC(self.textView, string) = [RACObserve(self.viewModel, logString) map:^id(NSString *log) {
+        if(log != nil) { return log; }
+        return @"No logs yet";;
+    }];
 }
 
 #pragma mark -
