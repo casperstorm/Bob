@@ -41,22 +41,26 @@
 
 - (void)displayCompletedBackupNotification:(id)_
 {
-    NSUserNotification *notification = [NSUserNotification new];
-    notification.title = @"Backup done!";
-    notification.informativeText = @"What is this sorcery?";
-    notification.soundName = NSUserNotificationDefaultSoundName;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSUserNotification *notification = [NSUserNotification new];
+        notification.title = @"Backup done!";
+        notification.informativeText = @"What is this sorcery?";
+        notification.soundName = NSUserNotificationDefaultSoundName;
 
-    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+        [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+    });
 }
 
 - (void)displayStartingBackupNotification:(id)_
 {
-    NSUserNotification *notification = [NSUserNotification new];
-    notification.title = @"Starting backup...";
-    notification.informativeText = @"What is this sorcery?";
-    notification.soundName = NSUserNotificationDefaultSoundName;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSUserNotification *notification = [NSUserNotification new];
+        notification.title = @"Starting backup...";
+        notification.informativeText = @"What is this sorcery?";
+        notification.soundName = NSUserNotificationDefaultSoundName;
 
-    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+        [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+    });
 }
 
 

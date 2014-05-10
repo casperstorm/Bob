@@ -7,18 +7,25 @@
 #import "GeneralPreferencesViewModel.h"
 #import "View+MASAdditions.h"
 
-@interface GeneralPreferencesViewController ()
+@interface GeneralPreferencesViewController () <NSComboBoxDelegate>
 @property (nonatomic, readonly) GeneralPreferencesViewModel *viewModel;
+@property (nonatomic, strong) NSButton *startAtLaunchSwitchButton;
+@property (nonatomic, strong) NSTextField *versionTextField;
+@property (nonatomic, strong) NSTextField *informationTextField;
+@property (nonatomic, strong) NSTextField *autobackupTextField;
+@property (nonatomic, strong) NSComboBox *backupTimerComboBox;
+@property (nonatomic, strong) NSArray *comboBoxArray;
 @end
 @implementation GeneralPreferencesViewController {
     GeneralPreferencesViewModel *_viewModel;
-    NSButton *_startAtLaunchSwitchButton;
 }
 
 - (id)init {
     self = [super init];
     if (self) {
         NSView *view = [[NSView alloc] initWithFrame:NSMakeRect(0, 0, 300, 300)];
+        self.comboBoxArray = @[ @"3 hours", @"5 hours", @"7 hours" ];
+
         [self setView:view];
         [self setupBindings];
         [self setupSubViews];
@@ -35,10 +42,35 @@
         make.top.equalTo(self.view).with.offset(10.f);
         make.centerX.equalTo(self.view);
     }];
+
+    [self.versionTextField mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.view);
+        make.bottom.equalTo(@-15);
+    }];
+
+    [self.informationTextField mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.versionTextField);
+        make.bottom.equalTo(self.versionTextField.mas_top);
+    }];
+
+    [self.backupTimerComboBox mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.autobackupTextField);
+        make.width.equalTo(@100);
+        make.left.equalTo(self.autobackupTextField.mas_right).offset(5.0f);
+    }];
+
+    [self.autobackupTextField mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(@10);
+        make.top.equalTo(self.startAtLaunchSwitchButton.mas_bottom).offset(10.f);
+    }];
 }
 
 - (void)setupSubViews {
     [self.view addSubview:self.startAtLaunchSwitchButton];
+    [self.view addSubview:self.versionTextField];
+    [self.view addSubview:self.informationTextField];
+    [self.view addSubview:self.backupTimerComboBox];
+    [self.view addSubview:self.autobackupTextField];
 }
 
 - (void)setupBindings {
@@ -81,6 +113,65 @@
     return _startAtLaunchSwitchButton;
 }
 
+- (NSTextField *)versionTextField {
+    if(!_versionTextField) {
+        _versionTextField = [NSTextField new];
+        [_versionTextField setBezeled:NO];
+        [_versionTextField setDrawsBackground:NO];
+        [_versionTextField setEditable:NO];
+        [_versionTextField setSelectable:NO];
+        [_versionTextField setFont:[NSFont systemFontOfSize:11]];
+        [_versionTextField setTextColor:[NSColor grayColor]];
+        [_versionTextField setStringValue:[self versionNumber]];
+    }
+
+    return _versionTextField;
+}
+
+- (NSTextField *)informationTextField
+{
+    if (!_informationTextField) {
+        _informationTextField = [NSTextField new];
+        [_informationTextField setBezeled:NO];
+        [_informationTextField setDrawsBackground:NO];
+        [_informationTextField setEditable:NO];
+        [_informationTextField setSelectable:NO];
+        [_informationTextField setFont:[NSFont systemFontOfSize:11]];
+        [_informationTextField setTextColor:[NSColor grayColor]];
+        [_informationTextField setStringValue:@"Built for Tarsnap"];
+    }
+
+    return _informationTextField;
+}
+
+- (NSComboBox *)backupTimerComboBox
+{
+    if (!_backupTimerComboBox) {
+        _backupTimerComboBox = [NSComboBox new];
+        _backupTimerComboBox.delegate = self;
+        [_backupTimerComboBox setEditable:NO];
+        [_backupTimerComboBox addItemsWithObjectValues:self.comboBoxArray];
+        [_backupTimerComboBox selectItemAtIndex:0];
+    }
+
+    return _backupTimerComboBox;
+}
+
+- (NSTextField *)autobackupTextField
+{
+    if (!_autobackupTextField) {
+        _autobackupTextField = [NSTextField new];
+        [_autobackupTextField setBezeled:NO];
+        [_autobackupTextField setDrawsBackground:NO];
+        [_autobackupTextField setEditable:NO];
+        [_autobackupTextField setSelectable:NO];
+        [_autobackupTextField setStringValue:@"Auto backup each"];
+    }
+
+    return _autobackupTextField;
+}
+
+
 - (GeneralPreferencesViewModel *)viewModel
 {
     if (!_viewModel) {
@@ -88,6 +179,26 @@
     }
 
     return _viewModel;
+}
+
+#pragma mark - NSComboBoxDelegate methods
+
+- (void)comboBoxSelectionDidChange:(NSNotification *)notification
+{
+    NSComboBox *comboBox = [notification object];
+    NSString *strValue = [comboBox itemObjectValueAtIndex:[comboBox indexOfSelectedItem]];
+
+    NSLog(@"%@", strValue);
+}
+
+#pragma mark - Helpers
+
+- (NSString *)versionNumber
+{
+    NSString *marketingVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+    NSString *buildNumber = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
+
+    return [NSString stringWithFormat:@"Version %@ (%@)", marketingVersion, buildNumber];
 }
 
 
