@@ -121,7 +121,6 @@ static NSString *const BackupModelAutoUpdateIntervalKey = @"BackupModelAutoUpdat
     }] subscribe:defaultsTerminal];
 
 
-
     /*
         Binds to the backupLog
     */

@@ -38,9 +38,8 @@
     [self.containerScrollView setDocumentView:self.textView];
 }
 
-- (void)setupBindings
-{
-    RAC(self.textView, string) = [RACObserve(self.viewModel, logString) ignore:nil];
+- (void)setupBindings {
+    RAC(self.textView, string) = [[RACObserve(self.viewModel, logString) ignore:nil] deliverOn:[RACScheduler mainThreadScheduler]];
 }
 
 #pragma mark -

@@ -7,6 +7,7 @@
 #import "TarsnapClient.h"
 #import "NSError+ConvenienceCreatorAdditions.h"
 #import "Folder.h"
+#import "NSObject+NotificationSignal.h"
 
 @interface TarsnapClient ()
 @end
@@ -59,35 +60,36 @@
 
 - (RACSignal *)performCommandWithLaunchPath:(NSString *)launchPath arguments:(NSArray *)arguments environment:(NSDictionary *)environment {
     return [RACSignal createSignal:^RACDisposable *(id <RACSubscriber> subscriber) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            NSTask *task;
-            task = [[NSTask alloc] init];
-            [task setLaunchPath:launchPath];
-            [task setArguments:arguments];
-            [task setEnvironment:environment];
+        NSTask *task;
+        task = [[NSTask alloc] init];
+        [task setLaunchPath:launchPath];
+        [task setArguments:arguments];
+        [task setEnvironment:environment];
 
-            NSPipe *pipe = [NSPipe pipe];
-            [task setStandardOutput:pipe];
+        NSPipe *pipe = [NSPipe pipe];
+        [task setStandardOutput:pipe];
 
-            NSPipe *errorPipe = [NSPipe pipe];
-            [task setStandardError:errorPipe];
+        NSPipe *errorPipe = [NSPipe pipe];
+        [task setStandardError:errorPipe];
 
-            NSFileHandle *errorFile = [errorPipe fileHandleForReading];
-            NSFileHandle *file = [pipe fileHandleForReading];
+        NSFileHandle *errorFile = [errorPipe fileHandleForReading];
 
-            [task launch];
+        RACSignal *dataSignal =[[NSNotificationCenter defaultCenter] rac_notifyUntilDealloc:NSFileHandleDataAvailableNotification];
 
-            NSData *outputData = [file readDataToEndOfFile];
-            NSData *errorOutputData = [errorFile readDataToEndOfFile];
-
-            NSString *output = [[NSString alloc] initWithData:outputData encoding: NSUTF8StringEncoding];
-            NSString *errorString = [[NSString alloc] initWithData:errorOutputData encoding: NSUTF8StringEncoding];
-
+        [dataSignal subscribeNext:^(NSNotification *notification) {
+            NSFileHandle *fileHandle = notification.object;
+            NSData *data = [fileHandle availableData];
+            NSString *output = [[NSString alloc] initWithData:data encoding: NSUTF8StringEncoding];
             [subscriber sendNext:output];
-            [subscriber sendNext:errorString];
+            if(output.length == 0) {
+                [subscriber sendCompleted];
+            }else {
+                [fileHandle waitForDataInBackgroundAndNotify];
+            }
+        }];
 
-            [subscriber sendCompleted];
-        });
+        [errorFile waitForDataInBackgroundAndNotify];
+        [task launch];
 
         return nil;
     }];
