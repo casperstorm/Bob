@@ -6,7 +6,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface Folder : NSObject
+@interface Folder : NSObject <NSCoding>
 
 @property (nonatomic, strong) NSString *path;
 @property (nonatomic, getter=isActive) BOOL active;

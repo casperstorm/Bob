@@ -24,5 +24,22 @@
     return [[self alloc] initWithPath:path active:active];
 }
 
+#pragma mark - Coding
+
+- (void)encodeWithCoder:(NSCoder *)coder
+{
+    [coder encodeBool:self.active forKey:@"active"];
+    [coder encodeObject:self.path forKey:@"path"];
+}
+
+- (id)initWithCoder:(NSCoder *)coder
+{
+    self = [self init];
+
+    self.active = [coder decodeBoolForKey:@"active"];
+    self.path    = [coder decodeObjectForKey:@"path"];
+
+    return self;
+}
 
 @end

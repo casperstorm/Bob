@@ -6,6 +6,9 @@
 
 #import "BackupModel.h"
 #import "TarsnapClient.h"
+#import "Folder.h"
+
+static NSString *const BackupModelFoldersKey = @"BackupModelFoldersKey";
 
 @interface BackupModel ()
 @property (nonatomic, strong) TarsnapClient *tarsnapClient;
@@ -57,6 +60,21 @@
 
     // When backup is done, it fires startTimer: again.
     [self rac_liftSelector:@selector(startTimer:) withSignals:backupDoneSignal, nil];
+
+    // Persistent folders
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    RACChannelTerminal *currentUserTerminal = RACChannelTo(self, folders);
+    RACChannelTerminal *defaultsTerminal = [defaults rac_channelTerminalForKey:BackupModelFoldersKey];
+
+    [[defaultsTerminal map:^id(NSData *data) {
+        if (!data) return nil;
+        return [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    }] subscribe:currentUserTerminal];
+
+    [[[currentUserTerminal skip:1] map:^id(Folder *folder){
+        return [NSKeyedArchiver archivedDataWithRootObject:folder];
+    }] subscribe:defaultsTerminal];
 }
 
 - (void)backupTimeFired:(id)backupTimeFired

@@ -7,4 +7,6 @@
 
 
 @interface GeneralPreferencesViewModel : NSObject
+@property (nonatomic, strong) RACCommand *startAtLaunchCommand;
+@property (nonatomic, readonly) BOOL startAppAtLaunch;
 @end

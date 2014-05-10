@@ -73,8 +73,9 @@
     [self.view addSubview:self.autobackupTextField];
 }
 
-- (void)setupBindings {
-
+- (void)setupBindings
+{
+    RAC(self, startAtLaunchSwitchButton.state) = RACObserve(self.viewModel, startAppAtLaunch);
 }
 
 #pragma mark -
@@ -108,9 +109,17 @@
         _startAtLaunchSwitchButton = [NSButton new];
         _startAtLaunchSwitchButton.title = @"Start Backup Bob on system startup";
         [_startAtLaunchSwitchButton setButtonType:NSSwitchButton];
+        [_startAtLaunchSwitchButton setAction:@selector(startAtLaunchButtonClicked:)];
+        [_startAtLaunchSwitchButton setTarget:self];
     }
 
     return _startAtLaunchSwitchButton;
+}
+
+- (void)startAtLaunchButtonClicked:(id)startAtLaunchButtonClicked
+{
+    NSButton *button = startAtLaunchButtonClicked;
+    [self.viewModel.startAtLaunchCommand execute:@(button.state)];
 }
 
 - (NSTextField *)versionTextField {
