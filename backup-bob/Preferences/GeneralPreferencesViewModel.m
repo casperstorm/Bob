@@ -35,10 +35,30 @@
     /*
         updateInterval binding to BackupModel.
     */
-    RAC([BackupModel sharedInstance], updateInterval) = [[[self.updateIntervalCommand.executionSignals flatten] ignore:nil] distinctUntilChanged];
-    RAC(self, updateInterval) = RACObserve([BackupModel sharedInstance], updateInterval);
+    RAC([BackupModel sharedInstance], updateIntervalHours) = [[[[self.updateIntervalCommand.executionSignals flatten] ignore:nil] distinctUntilChanged] map:^id(NSNumber *autoUpdateIntervalObject) {
+        enum AutoUpdateInterval autoUpdateInterval = (enum AutoUpdateInterval) [autoUpdateIntervalObject intValue];
+        switch (autoUpdateInterval) {
+            case AutoUpdateIntervalThreeHour: return @3;
+            case AutoUpdateIntervalFiveHour: return @5;
+            case AutoUpdateIntervalSevenHour: return @7;
+        }
+
+        return nil;
+    }];
+    RAC(self, updateInterval) = [RACObserve([BackupModel sharedInstance], updateIntervalHours) map:^id(NSNumber *hours) {
+        if([hours intValue] == 3 ) {
+            return @(AutoUpdateIntervalThreeHour);
+        }else if ([hours intValue] == 5 ) {
+            return @(AutoUpdateIntervalFiveHour);
+        }else if([hours intValue] == 7 ) {
+            return @(AutoUpdateIntervalSevenHour);
+        }
+
+        return @(AutoUpdateIntervalThreeHour);
+    }];
 
 }
+
 
 #pragma mark - Properties
 

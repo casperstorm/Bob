@@ -6,6 +6,13 @@
 #import <Foundation/Foundation.h>
 #import "BackupModel.h"
 
+NS_ENUM(NSInteger , AutoUpdateInterval) {
+    AutoUpdateIntervalThreeHour = 0,
+    AutoUpdateIntervalFiveHour,
+    AutoUpdateIntervalSevenHour,
+};
+
+
 @interface GeneralPreferencesViewModel : NSObject
 @property (nonatomic, strong) RACCommand *startAtLaunchCommand;
 @property (nonatomic, strong) RACCommand *updateIntervalCommand;

@@ -6,16 +6,11 @@
 
 #import <Foundation/Foundation.h>
 
-NS_ENUM(NSInteger , AutoUpdateInterval) {
-    AutoUpdateIntervalThreeHour = 0,
-    AutoUpdateIntervalFiveHour,
-    AutoUpdateIntervalSevenHour,
-};
 
 @interface BackupModel : NSObject
 
 @property (nonatomic, strong) RACCommand *backupNowCommand;
-@property (nonatomic) enum AutoUpdateInterval updateInterval;
+@property (nonatomic) NSNumber *updateIntervalHours;
 @property (nonatomic, readonly) NSDate *nextBackupDate;
 @property (nonatomic, readonly) NSDate *lastBackupDate;
 @property (nonatomic, readonly) BOOL backupInProgress;

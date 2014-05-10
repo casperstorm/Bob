@@ -18,7 +18,6 @@ static NSString *const BackupModelAutoUpdateIntervalKey = @"BackupModelAutoUpdat
 @property (nonatomic, strong) NSDate *nextBackupDate;
 @property (nonatomic, strong) NSDate *lastBackupDate;
 @property (nonatomic, strong) NSArray *folders;
-@property (nonatomic, assign) NSTimeInterval updateTimeInterval;
 @end
 @implementation BackupModel {
     NSArray *_folders;
@@ -85,7 +84,7 @@ static NSString *const BackupModelAutoUpdateIntervalKey = @"BackupModelAutoUpdat
 - (void)persistentAutoUpdate
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    RACChannelTerminal *autoUpdateIntervalTerminal = RACChannelTo(self, updateInterval);
+    RACChannelTerminal *autoUpdateIntervalTerminal = RACChannelTo(self, updateIntervalHours);
     RACChannelTerminal *defaultsAutoUpdateIntervalTerminal = [defaults rac_channelTerminalForKey:BackupModelAutoUpdateIntervalKey];
 
     [[autoUpdateIntervalTerminal skip:1] subscribe:defaultsAutoUpdateIntervalTerminal];

@@ -78,10 +78,6 @@
 - (void)setupBindings {
     RAC(self, startAtLaunchSwitchButton.state) = RACObserve(self.viewModel, startAppAtLaunch);
     RAC(self.backupTimerComboBox, selectedIndex) = RACObserve(self.viewModel, updateInterval);
-
-    [[RACObserve(self.backupTimerComboBox, selectedIndex) distinctUntilChanged] subscribeNext:^(id x) {
-        NSLog(@"x = %@", x);
-    }];
 }
 
 
@@ -167,7 +163,6 @@
         _backupTimerComboBox.delegate = self;
         [_backupTimerComboBox setEditable:NO];
         [_backupTimerComboBox addItemsWithObjectValues:self.comboBoxArray];
-        [_backupTimerComboBox selectItemAtIndex:0];
     }
 
     return _backupTimerComboBox;
