@@ -62,7 +62,7 @@ static NSString *const BackupModelFoldersKey = @"BackupModelFoldersKey";
     [self rac_liftSelector:@selector(startTimer:) withSignals:backupDoneSignal, nil];
 
     // Persistent folders
-    
+
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     RACChannelTerminal *currentUserTerminal = RACChannelTo(self, folders);
     RACChannelTerminal *defaultsTerminal = [defaults rac_channelTerminalForKey:BackupModelFoldersKey];

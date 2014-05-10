@@ -7,7 +7,6 @@
 
 
 @interface SettingsModel : NSObject
-
-
+@property (nonatomic, assign) BOOL startAppAtLaunch;
 + (SettingsModel *)sharedInstance;
 @end
