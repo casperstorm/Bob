@@ -3,6 +3,5 @@ inhibit_all_warnings!
 
 pod 'Masonry', '~> 0.4'
 pod 'ReactiveCocoa', '~> 2.3'
-pod 'NSDate+TimeAgo', '~> 1.0'
 pod 'MASPreferences', '~> 1.1'
 pod 'SORelativeDateTransformer', '~> 1.1'
