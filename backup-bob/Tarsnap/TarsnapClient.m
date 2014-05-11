@@ -7,13 +7,13 @@
 #import "TarsnapClient.h"
 #import "Folder.h"
 #import "NSObject+NotificationSignal.h"
+#import "NSError+ConvenienceCreatorAdditions.h"
 
 @interface TarsnapClient ()
 @end
 
 @implementation TarsnapClient {
     NSTask *_task;
-    RACSignal *_dataSignal;
 }
 
 - (id)init
@@ -70,19 +70,28 @@
 
         NSFileHandle *errorFile = [errorPipe fileHandleForReading];
 
-        __block NSObject *observer = [NSObject  new];
-        _dataSignal = [observer rac_notifyUntilDealloc:NSFileHandleDataAvailableNotification];
+        __block NSObject *observer = [NSObject new];
+        RACSignal *dataSignal = [observer rac_notifyUntilDealloc:NSFileHandleDataAvailableNotification];
 
-        [_dataSignal subscribeNext:^(NSNotification *notification) {
+        [dataSignal subscribeNext:^(NSNotification *notification) {
             NSFileHandle *fileHandle = notification.object;
             NSData *data = [fileHandle availableData];
             NSString *output = [[NSString alloc] initWithData:data encoding: NSUTF8StringEncoding];
             [subscriber sendNext:output];
-            if(output.length == 0) {
-                observer = nil;
-                [subscriber sendCompleted];
-            }else {
+            if(output.length != 0) {
                 [fileHandle waitForDataInBackgroundAndNotify];
+            } else {
+                observer = nil;
+                int status = [_task terminationStatus];
+
+                if (status == 0) {
+                    NSError *error = [NSError errorWithDescription:@"Backup failed" code:status];
+                    [subscriber sendError:error];
+                    [subscriber sendCompleted];
+                } else {
+                    NSError *error = [NSError errorWithDescription:@"Backup failed" code:status];
+                    [subscriber sendError:error];
+                }
             }
         }];
 

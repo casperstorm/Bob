@@ -16,6 +16,7 @@
 @property (nonatomic, readonly) BOOL backupInProgress;
 @property (nonatomic, readonly) NSArray *folders;
 @property (nonatomic, readonly) NSString *backupLog;
+@property (nonatomic, readonly) NSNumber *lastBackupStatus;
 
 + (BackupModel *)sharedInstance;
 - (void)addFolders:(NSArray *)folders;
