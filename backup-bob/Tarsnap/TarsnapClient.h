@@ -11,4 +11,6 @@
 
 - (RACSignal *)makeWithDeltas:(NSArray *)deltas folders:(NSArray *)folders;
 - (RACSignal *)sleep;
+
+- (void)terminate;
 @end

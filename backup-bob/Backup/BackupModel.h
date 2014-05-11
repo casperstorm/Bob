@@ -21,4 +21,5 @@
 - (void)addFolders:(NSArray *)folders;
 - (void)removeFoldersInIndexSet:(NSIndexSet *)set;
 
+- (void)terminate;
 @end

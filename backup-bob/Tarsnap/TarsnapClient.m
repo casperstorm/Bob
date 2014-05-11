@@ -5,25 +5,27 @@
 
 
 #import "TarsnapClient.h"
-#import "NSError+ConvenienceCreatorAdditions.h"
 #import "Folder.h"
 #import "NSObject+NotificationSignal.h"
 
 @interface TarsnapClient ()
 @end
 
-@implementation TarsnapClient
+@implementation TarsnapClient {
+    NSTask *_task;
+    RACSignal *_dataSignal;
+}
 
 - (id)init
 {
     if (!(self = [super init])) return nil;
 
+    _dataSignal = [self rac_notifyUntilDealloc:NSFileHandleDataAvailableNotification];
+
     return self;
 }
 
 - (RACSignal *)makeWithDeltas:(NSArray *)deltas folders:(NSArray *)folders  {
-//    if(folders.count==0) return nil;
-
     NSMutableArray *arguments = [NSMutableArray new];
     [arguments addObjectsFromArray:@[@"--deltas", @"3h", @"1d", @"7d", @"30d"]];
     [arguments addObject:@"--sources"];
@@ -43,7 +45,6 @@
 }
 
 - (RACSignal *)sleep {
-
     return [RACSignal createSignal:^RACDisposable *(id <RACSubscriber> subscriber) {
         float delayInSeconds = 2.0;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t) (delayInSeconds * NSEC_PER_SEC));
@@ -54,29 +55,24 @@
 
         return nil;
     }];
-
-//    return [self performCommandWithLaunchPath:@"/bin/sleep" arguments:@[@"5"]];
 }
 
 - (RACSignal *)performCommandWithLaunchPath:(NSString *)launchPath arguments:(NSArray *)arguments environment:(NSDictionary *)environment {
     return [RACSignal createSignal:^RACDisposable *(id <RACSubscriber> subscriber) {
-            NSTask *task;
-        task = [[NSTask alloc] init];
-        [task setLaunchPath:launchPath];
-        [task setArguments:arguments];
-        [task setEnvironment:environment];
+        _task = [[NSTask alloc] init];
+        [_task setLaunchPath:launchPath];
+        [_task setArguments:arguments];
+        [_task setEnvironment:environment];
 
         NSPipe *pipe = [NSPipe pipe];
-        [task setStandardOutput:pipe];
+        [_task setStandardOutput:pipe];
 
         NSPipe *errorPipe = [NSPipe pipe];
-        [task setStandardError:errorPipe];
+        [_task setStandardError:errorPipe];
 
         NSFileHandle *errorFile = [errorPipe fileHandleForReading];
 
-        RACSignal *dataSignal = [self rac_notifyUntilDealloc:NSFileHandleDataAvailableNotification];
-
-        [dataSignal subscribeNext:^(NSNotification *notification) {
+        [_dataSignal subscribeNext:^(NSNotification *notification) {
             NSFileHandle *fileHandle = notification.object;
             NSData *data = [fileHandle availableData];
             NSString *output = [[NSString alloc] initWithData:data encoding: NSUTF8StringEncoding];
@@ -89,11 +85,13 @@
         }];
 
         [errorFile waitForDataInBackgroundAndNotify];
-        [task launch];
+        [_task launch];
 
         return nil;
     }];
 }
 
-
+- (void)terminate {
+    [_task terminate];
+}
 @end

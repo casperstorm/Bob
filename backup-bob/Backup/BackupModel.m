@@ -20,6 +20,8 @@ static NSString *const BackupModelLastBackupDateKey = @"BackupModelLastBackupDat
 @property (nonatomic, strong) NSArray *folders;
 @property (nonatomic, assign) BOOL anyActiveFolders;
 @property (nonatomic, assign) NSTimeInterval backupTimeInterval;
+@property (nonatomic, strong) TarsnapClient *tarsnapClient;
+
 @end
 @implementation BackupModel {
     NSArray *_folders;
@@ -28,6 +30,7 @@ static NSString *const BackupModelLastBackupDateKey = @"BackupModelLastBackupDat
 + (BackupModel *)sharedInstance
 {
     static BackupModel *sharedInstance = nil;
+
     if (sharedInstance) return sharedInstance;
     static dispatch_once_t pred;
     dispatch_once(&pred, ^{
@@ -41,6 +44,7 @@ static NSString *const BackupModelLastBackupDateKey = @"BackupModelLastBackupDat
     if (!(self = [super init])) return nil;
 
     _folders = [NSMutableArray new];
+    _tarsnapClient = [TarsnapClient new];
 
     [self setupBindings];
     [self startTimer:nil];
@@ -162,14 +166,12 @@ static NSString *const BackupModelLastBackupDateKey = @"BackupModelLastBackupDat
 
 #pragma mark - Properties
 
-- (RACCommand *)backupNowCommand
-{
+- (RACCommand *)backupNowCommand {
     if (!_backupNowCommand) {
         _backupNowCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
             [self endTimer:nil];
             if(self.folders.count > 0) {
-                TarsnapClient *tarsnapClient = [TarsnapClient new];
-                return [tarsnapClient makeWithDeltas:nil folders:self.folders];
+                return [_tarsnapClient makeWithDeltas:nil folders:self.folders];
             }
             return [RACSignal return:nil];
         }];
@@ -188,6 +190,10 @@ static NSString *const BackupModelLastBackupDateKey = @"BackupModelLastBackupDat
     NSMutableArray *folders = [self.folders mutableCopy];
     [folders removeObjectsAtIndexes:set];
     self.folders = folders;
+}
+
+- (void)terminate {
+    [_tarsnapClient terminate];
 }
 
 @end

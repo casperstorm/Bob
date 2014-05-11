@@ -25,4 +25,9 @@
     [NotificationsManager sharedInstance];
 }
 
+- (void)applicationWillTerminate:(NSNotification *)notification {
+    [[BackupModel sharedInstance] terminate];
+}
+
+
 @end
