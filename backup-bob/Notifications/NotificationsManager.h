@@ -9,4 +9,6 @@
 
 @interface NotificationsManager : NSObject
 + (NotificationsManager *)sharedInstance;
+
+- (void)displayFailedBackupNotification:(id)_;
 @end

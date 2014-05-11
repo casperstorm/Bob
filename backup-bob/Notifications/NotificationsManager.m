@@ -33,9 +33,11 @@
 - (void)setupBindings
 {
     RACSignal *backupDoneSignal = [[[RACObserve([BackupModel sharedInstance], backupInProgress) distinctUntilChanged] ignore:@YES] skip:1];
+    RACSignal *backupFailedSignal = [[RACObserve([BackupModel sharedInstance], lastBackupStatus) ignore:@0] skip:1];
     RACSignal *backupStartingSignal = [[[RACObserve([BackupModel sharedInstance], backupInProgress) distinctUntilChanged] ignore:@NO] skip:1];
 
     [self rac_liftSelector:@selector(displayCompletedBackupNotification:) withSignals:backupDoneSignal, nil];
+    [self rac_liftSelector:@selector(displayFailedBackupNotification:) withSignals:backupFailedSignal, nil];
     [self rac_liftSelector:@selector(displayStartingBackupNotification:) withSignals:backupStartingSignal, nil];
 }
 
@@ -44,6 +46,17 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         NSUserNotification *notification = [NSUserNotification new];
         notification.title = @"Backup done!";
+        notification.soundName = NSUserNotificationDefaultSoundName;
+
+        [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+    });
+}
+
+- (void)displayFailedBackupNotification:(id)_
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSUserNotification *notification = [NSUserNotification new];
+        notification.title = @"Backup Failed!";
         notification.soundName = NSUserNotificationDefaultSoundName;
 
         [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
