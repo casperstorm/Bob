@@ -11,11 +11,14 @@
 static NSString *const BackupModelFoldersKey = @"BackupModelFoldersKey";
 static NSString *const BackupModelAutoUpdateIntervalKey = @"BackupModelAutoUpdateIntervalKey";
 static NSString *const BackupModelLastBackupDateKey = @"BackupModelLastBackupDateKey";
+static NSString *const BackupModelLastBackupStatusKey = @"BackupModelLastBackupStatusKey";
+
 
 @interface BackupModel ()
 @property (nonatomic, strong) NSTimer *backupTimer;
 @property (nonatomic, assign) BOOL backupInProgress;
 @property (nonatomic, strong) NSDate *nextBackupDate;
+@property (nonatomic, strong) NSNumber *lastBackupStatus;
 @property (nonatomic, strong) NSDate *lastBackupDate;
 @property (nonatomic, strong) NSArray *folders;
 @property (nonatomic, assign) BOOL anyActiveFolders;
@@ -64,13 +67,28 @@ static NSString *const BackupModelLastBackupDateKey = @"BackupModelLastBackupDat
     */
     RAC(self, backupInProgress) = self.backupNowCommand.executing;
 
+
+    /*
+        Binds the error signals of the backupNowCommand
+    */
+    RACSignal *failedBackupSignal = [[self.backupNowCommand.errors subscribeOn:[RACScheduler mainThreadScheduler]] map:^id(NSError *error) {
+        return error;
+    }];
+    RAC(self, lastBackupStatus) = [failedBackupSignal map:^id(NSError *error) {
+        return @(error.code);
+    }];
+
     /*
         Listen to when a backup was completed. When it is done, it will set the lastBackupDate.
     */
-    RACSignal *backupDoneSignal = [[[RACObserve(self, backupInProgress) distinctUntilChanged] ignore:@YES] skip:1];
-    RAC(self, lastBackupDate) = [backupDoneSignal map:^id(id value) {
-        return [NSDate date];
+    RAC(self, lastBackupDate) = [self.backupNowCommand.executionSignals flattenMap:^RACStream *(RACSignal *subscribeSignal) {
+        return [[[subscribeSignal materialize] filter:^BOOL(RACEvent *event) {
+            return event.eventType == RACEventTypeCompleted;
+        }] map:^id(id value) {
+            return [NSDate date];
+        }];
     }];
+    RACSignal *backupDoneSignal = [[[RACObserve(self, backupInProgress) distinctUntilChanged] ignore:@YES] skip:1];
 
     /*
         When backup is done, it starts the timer again
@@ -99,6 +117,7 @@ static NSString *const BackupModelLastBackupDateKey = @"BackupModelLastBackupDat
     [self persistentFolders];
     [self persistentAutoUpdate];
     [self persistentLastBackupDate];
+    [self persistentLastBackupStatus];
 }
 
 - (void)persistentLastBackupDate
@@ -109,6 +128,16 @@ static NSString *const BackupModelLastBackupDateKey = @"BackupModelLastBackupDat
 
     [[lastBackupDateTerminal skip:1] subscribe:defaultsAutoUpdateIntervalTerminal];
     [defaultsAutoUpdateIntervalTerminal subscribe:lastBackupDateTerminal];
+}
+
+- (void)persistentLastBackupStatus
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    RACChannelTerminal *lastBackupStatusTerminal = RACChannelTo(self, lastBackupStatus);
+    RACChannelTerminal *defaultsBackupStatusTerminal = [defaults rac_channelTerminalForKey:BackupModelLastBackupStatusKey];
+
+    [[lastBackupStatusTerminal skip:1] subscribe:defaultsBackupStatusTerminal];
+    [defaultsBackupStatusTerminal subscribe:lastBackupStatusTerminal];
 }
 
 - (void)persistentAutoUpdate

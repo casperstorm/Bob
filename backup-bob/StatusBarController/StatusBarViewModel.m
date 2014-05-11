@@ -19,15 +19,19 @@
     if (!(self = [super init])) return nil;
 
     /*
-        Listen to last lastBackupDateSignal, and a timer which fires every 0.1 sec.
+        Listen to last lastBackupDateSignal, and a timer which fires every 0.5 sec.
         If we have no lastBackupDate, we haven't had any backups yet. Else we print the relativeDate.
     */
-    RACSignal *checkBackupTimer = [[RACSignal interval:0.1 onScheduler:[RACScheduler currentScheduler]] startWith:nil];
+    RACSignal *checkBackupTimer = [[RACSignal interval:0.5 onScheduler:[RACScheduler currentScheduler]] startWith:nil];
     RACSignal *lastBackupDateSignal = RACObserve([BackupModel sharedInstance], lastBackupDate);
-    RAC(self, lastBackupString) = [[RACSignal combineLatest:@[lastBackupDateSignal, checkBackupTimer ]] map:^id(RACTuple *tuple) {
-        RACTupleUnpack(NSDate *date) = tuple;
+    RACSignal *lastBackupStatusSignal = RACObserve([BackupModel sharedInstance], lastBackupStatus);
+
+    RAC(self, lastBackupString) = [[RACSignal combineLatest:@[lastBackupDateSignal, lastBackupStatusSignal, checkBackupTimer]] map:^id(RACTuple *tuple) {
+        RACTupleUnpack(NSDate *date, NSNumber *lastBackupStatus) = tuple;
         if(date == nil) {
             return @"No backups yet";
+        } else if ([lastBackupStatus intValue] != 0){
+            return @"Last backup failed. Check log for details.";
         } else {
             NSString *relativeDate = [[SORelativeDateTransformer registeredTransformer] transformedValue:date];
             return [NSString stringWithFormat:@"Last backup %@", relativeDate];
