@@ -205,14 +205,19 @@
         [_folderTableView setAllowsMultipleSelection:YES];
         [_folderTableView setUsesAlternatingRowBackgroundColors:YES];
 
-        NSTableColumn * column1 = [[NSTableColumn alloc] initWithIdentifier:ColumnActiveIdentifier];
-        [[column1 headerCell] setStringValue:@"Active"];
+
         NSTableColumn * column2 = [[NSTableColumn alloc] initWithIdentifier:ColumnPathIdentifier];
         [[column2 headerCell] setStringValue:@"Path"];
-        [column1 setWidth:35];
-        [_folderTableView addTableColumn:column1];
+
         [_folderTableView addTableColumn:column2];
         [_folderTableView reloadData];
+
+
+        //Active column is disabled for now
+//        NSTableColumn * column1 = [[NSTableColumn alloc] initWithIdentifier:ColumnActiveIdentifier];
+//        [[column1 headerCell] setStringValue:@"Active"];
+//        [column1 setWidth:35];
+//        [_folderTableView addTableColumn:column1];
     }
 
     return _folderTableView;
