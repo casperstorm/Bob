@@ -153,8 +153,11 @@
             activeButton = [[NSButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
             [activeButton setButtonType:NSSwitchButton];
             [activeButton setTitle:@""];
-
         }
+
+        [activeButton setTag:row];
+        [activeButton setAction:@selector(activeButtonClicked:)];
+        [activeButton setTarget:self];
 
         [activeButton setState:[folder isActive]];
 
@@ -178,6 +181,14 @@
     }
 
     return nil;
+}
+
+- (void)activeButtonClicked:(id)sender {
+    NSButton *button = sender;
+    NSUInteger row = (NSUInteger) button.tag;
+    Folder *folder = [_viewModel.folders objectAtIndex:(NSUInteger) row];
+    BOOL active = button.state != 0;
+    [folder setActive:active];
 }
 
 - (void)tableViewSelectionDidChange:(NSNotification *)notification {

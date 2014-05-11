@@ -20,8 +20,6 @@
 {
     if (!(self = [super init])) return nil;
 
-    _dataSignal = [self rac_notifyUntilDealloc:NSFileHandleDataAvailableNotification];
-
     return self;
 }
 
@@ -72,12 +70,16 @@
 
         NSFileHandle *errorFile = [errorPipe fileHandleForReading];
 
+        __block NSObject *observer = [NSObject  new];
+        _dataSignal = [observer rac_notifyUntilDealloc:NSFileHandleDataAvailableNotification];
+
         [_dataSignal subscribeNext:^(NSNotification *notification) {
             NSFileHandle *fileHandle = notification.object;
             NSData *data = [fileHandle availableData];
             NSString *output = [[NSString alloc] initWithData:data encoding: NSUTF8StringEncoding];
             [subscriber sendNext:output];
             if(output.length == 0) {
+                observer = nil;
                 [subscriber sendCompleted];
             }else {
                 [fileHandle waitForDataInBackgroundAndNotify];
