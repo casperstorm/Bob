@@ -37,6 +37,7 @@ After the installation of both Tarsnap and Tarsnapper you can enjoy Bob by compi
 * ~~Start on launch~~
 * ~~Status bar icon~~
 * Define generations in preferences
+* Animate status bar icon when backing up.
 * Remove Tarsnapper dependency
 * Bundle compiled version of Tarsnap (Optional for user)
 * Sparkle integration by Andy Matuschak
