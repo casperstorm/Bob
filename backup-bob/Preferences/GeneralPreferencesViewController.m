@@ -110,7 +110,7 @@
 - (NSButton *)startAtLaunchSwitchButton {
     if (!_startAtLaunchSwitchButton) {
         _startAtLaunchSwitchButton = [NSButton new];
-        _startAtLaunchSwitchButton.title = @"Start Backup Bob on system startup";
+        _startAtLaunchSwitchButton.title = @"Start Bob on system startup";
         [_startAtLaunchSwitchButton setButtonType:NSSwitchButton];
         [_startAtLaunchSwitchButton setAction:@selector(startAtLaunchButtonClicked:)];
         [_startAtLaunchSwitchButton setTarget:self];
@@ -176,7 +176,7 @@
         [_autobackupTextField setDrawsBackground:NO];
         [_autobackupTextField setEditable:NO];
         [_autobackupTextField setSelectable:NO];
-        [_autobackupTextField setStringValue:@"Auto backup each"];
+        [_autobackupTextField setStringValue:@"Auto backup every"];
     }
 
     return _autobackupTextField;
