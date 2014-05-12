@@ -33,6 +33,7 @@
     return self;
 }
 
+
 - (void)setupPreferences {
     GeneralPreferencesViewController *generalPreferencesViewController = [GeneralPreferencesViewController new];
     FolderPreferencesViewController *folderPreferencesViewController = [FolderPreferencesViewController new];
@@ -48,6 +49,10 @@
 {
     RAC(self, lastBackupMenuItem.title) = RACObserve(self.viewModel, lastBackupString);
     RAC(self, nextBackupMenuItem.title) = RACObserve(self.viewModel, nextBackupString);
+
+    RACSignal *showSignal = [[self rac_signalForSelector:@selector(menuWillOpen:)] mapReplace:@(YES)];
+    RACSignal *hideSignal = [[self rac_signalForSelector:@selector(menuDidClose:)] mapReplace:@(NO)];
+    RAC(self.viewModel, statusBarVisible) = [RACSignal merge:@[showSignal, hideSignal]];
 }
 
 - (void)setupMenu
@@ -68,6 +73,7 @@
     [menu addItem:[NSMenuItem separatorItem]];
     [menu addItemWithTitle:@"Quit" action:@selector(terminate:) keyEquivalent:@""];
     self.statusItem.menu = menu;
+    [menu setDelegate:self];
 }
 
 - (void)preferencesClicked:(id)preferencesClicked {
@@ -79,6 +85,15 @@
 {
     [self.viewModel.backupNowCommand execute:nil];
 }
+
+#pragma mark - NSMenu delegate
+
+- (void)menuWillOpen:(NSMenu *)menu {
+}
+
+- (void)menuDidClose:(NSMenu *)menu {
+}
+
 
 #pragma mark - Properties
 

@@ -7,5 +7,5 @@
 #import <Foundation/Foundation.h>
 
 
-@interface StatusBarController : NSObject
+@interface StatusBarController : NSObject <NSMenuDelegate>
 @end

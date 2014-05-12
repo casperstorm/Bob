@@ -10,6 +10,6 @@
 @interface StatusBarViewModel : NSObject
 @property (nonatomic, readonly) NSString *nextBackupString;
 @property (nonatomic, readonly) NSString *lastBackupString;
-
+@property (nonatomic, getter=isStatusBarVisible) BOOL statusBarVisible;
 @property (nonatomic, strong) RACCommand *backupNowCommand;
 @end

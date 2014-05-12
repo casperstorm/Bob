@@ -87,7 +87,6 @@
                 if (status == 0) {
                     NSError *error = [NSError errorWithDescription:@"Backup failed" code:status];
                     [subscriber sendError:error];
-                    [subscriber sendCompleted];
                 } else {
                     NSError *error = [NSError errorWithDescription:@"Backup failed" code:status];
                     [subscriber sendError:error];
