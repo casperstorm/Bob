@@ -26,19 +26,21 @@
     RACSignal *lastBackupDateSignal = RACObserve([BackupModel sharedInstance], lastBackupDate);
     RACSignal *lastBackupStatusSignal = RACObserve([BackupModel sharedInstance], lastBackupStatus);
     RACSignal *statusBarVisibleSignal = RACObserve(self, statusBarVisible);
-    [statusBarVisibleSignal subscribeNext:^(id x) {
-        RAC(self, lastBackupString)  = [[[[RACSignal combineLatest:@[lastBackupDateSignal, lastBackupStatusSignal, checkBackupTimer]] map:^id(RACTuple *tuple) {
-            RACTupleUnpack(NSDate *date, NSNumber *lastBackupStatus) = tuple;
-            if(date == nil) {
-                return @"No backups yet";
-            } else if ([lastBackupStatus intValue] != 0){
-                return @"Last backup failed. Check log for details.";
-            } else {
-                NSString *relativeDate = [[SORelativeDateTransformer registeredTransformer] transformedValue:date];
-                return [NSString stringWithFormat:@"Last backup %@", relativeDate];
-            }
-        }] takeUntil:[statusBarVisibleSignal ignore:@(YES)]] startWith:@""];
-    }];
+    RAC(self, lastBackupString) = [RACSignal
+            if:statusBarVisibleSignal
+          then:[[RACSignal combineLatest:@[lastBackupDateSignal,lastBackupStatusSignal, checkBackupTimer]]
+                  map:^id(RACTuple *tuple) {
+                    RACTupleUnpack(NSDate *date, NSNumber *lastBackupStatus) = tuple;
+                    if(date == nil) {
+                        return @"No backups yet";
+                    } else if ([lastBackupStatus intValue] != 0){
+                        return @"Last backup failed. Check log for details.";
+                    } else {
+                        NSString *relativeDate = [[SORelativeDateTransformer registeredTransformer] transformedValue:date];
+                        return [NSString stringWithFormat:@"Last backup %@", relativeDate];
+                    }
+                  }]
+          else:[RACSignal return:@""]];
 
     /*
         Listen to last nextBackupDateSignal, a timer which fires every 0.1 sec and if a backup is in progress.
@@ -46,18 +48,16 @@
     */
     RACSignal *nextBackupDateSignal = RACObserve([BackupModel sharedInstance], nextBackupDate);
     RACSignal *backupInProgressSignal = RACObserve([BackupModel sharedInstance], backupInProgress);
-    [statusBarVisibleSignal subscribeNext:^(id x) {
-        RAC(self, nextBackupString) = [[[[RACSignal combineLatest:@[nextBackupDateSignal, backupInProgressSignal, checkBackupTimer]] map:^id(RACTuple *tuple) {
-            RACTupleUnpack(NSDate *nextBackupDate, NSNumber *backupInProgress) = tuple;
-            if([backupInProgress boolValue]) {
-                return @"Backup in progress..";
-            } else {
-                NSString *relativeDate = [[SORelativeDateTransformer registeredTransformer] transformedValue:nextBackupDate];
-                return [NSString stringWithFormat:@"Next backup %@", relativeDate];
-            }
-        }] takeUntil:[statusBarVisibleSignal ignore:@(YES)]] startWith:@""];;
-    }];
 
+    RAC(self, nextBackupString) = [RACSignal if:statusBarVisibleSignal then:[[RACSignal combineLatest:@[nextBackupDateSignal, backupInProgressSignal, checkBackupTimer]] map:^id(RACTuple *tuple) {
+        RACTupleUnpack(NSDate *nextBackupDate, NSNumber *backupInProgress) = tuple;
+        if([backupInProgress boolValue]) {
+            return @"Backup in progress..";
+        } else {
+            NSString *relativeDate = [[SORelativeDateTransformer registeredTransformer] transformedValue:nextBackupDate];
+            return [NSString stringWithFormat:@"Next backup %@", relativeDate];
+        }
+    }] else:[RACSignal return:@""]];
 
     return self;
 }
