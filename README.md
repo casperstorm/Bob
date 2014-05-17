@@ -27,7 +27,7 @@ After the installation of both Tarsnap and Tarsnapper you can enjoy Bob by compi
 
 ## Screenshot
 
-![](https://raw.githubusercontent.com/casperstorm/casperstorm.github.io/master/img/bob.png)
+![](https://raw.githubusercontent.com/casperstorm/casperstorm.github.io/master/bob/bob.png)
 
 ## Roadmap
 * ~~Include folders~~
