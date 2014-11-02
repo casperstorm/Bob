@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02BF14D71A06BC250017A693 /* bob-darkmode-normal_360.png in Resources */ = {isa = PBXBuildFile; fileRef = 02BF14D41A06BC250017A693 /* bob-darkmode-normal_360.png */; };
+		02BF14D81A06BC250017A693 /* bob-darkmode-retina_360.png in Resources */ = {isa = PBXBuildFile; fileRef = 02BF14D51A06BC250017A693 /* bob-darkmode-retina_360.png */; };
 		02D6F6C2191BE4CF00314446 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02D6F6C1191BE4CF00314446 /* Cocoa.framework */; };
 		02D6F6CC191BE4CF00314446 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 02D6F6CA191BE4CF00314446 /* InfoPlist.strings */; };
 		02D6F6CE191BE4CF00314446 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 02D6F6CD191BE4CF00314446 /* main.m */; };
@@ -54,6 +56,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		02BF14D41A06BC250017A693 /* bob-darkmode-normal_360.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bob-darkmode-normal_360.png"; sourceTree = "<group>"; };
+		02BF14D51A06BC250017A693 /* bob-darkmode-retina_360.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bob-darkmode-retina_360.png"; sourceTree = "<group>"; };
 		02D6F6BE191BE4CF00314446 /* backup-bob.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "backup-bob.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		02D6F6C1191BE4CF00314446 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		02D6F6C4191BE4CF00314446 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -73,7 +77,6 @@
 		02D6F6E7191BE4CF00314446 /* backup-bobTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "backup-bobTests-Info.plist"; sourceTree = "<group>"; };
 		02D6F6E9191BE4CF00314446 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		02D6F6EB191BE4CF00314446 /* backup_bobTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = backup_bobTests.m; sourceTree = "<group>"; };
-		507C52DF7CFC472EAC2BEA97 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		5B50C1040A8746CE8C176E14 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		659F200E938F3D064C49C5C0 /* Folder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Folder.m; sourceTree = "<group>"; };
 		659F21B95B9C584301B1FD73 /* SettingsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsModel.m; sourceTree = "<group>"; };
@@ -99,6 +102,7 @@
 		659F2E7025F9A9EB5016A84F /* GeneralPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralPreferencesViewController.m; sourceTree = "<group>"; };
 		659F2F30EBD6D9530787FD7D /* Folder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Folder.h; sourceTree = "<group>"; };
 		659F2F65FD251E32A25D5913 /* NSTableView+RACAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTableView+RACAdditions.h"; sourceTree = "<group>"; };
+		A42A5DC8DDD337996BD1A14A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		AF7AB008237A61ECE62454F4 /* LogPreferencesViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogPreferencesViewModel.h; sourceTree = "<group>"; };
 		AF7AB2677858C7AF7275BFEF /* LogPreferencesViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogPreferencesViewModel.m; sourceTree = "<group>"; };
 		AF7AB2A800442D9E7E2F3DCD /* StatusBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusBarController.m; sourceTree = "<group>"; };
@@ -116,6 +120,7 @@
 		AF7ABCF3C6B49C653651AAF3 /* PaddingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaddingTextView.h; sourceTree = "<group>"; };
 		AF7ABF3940A2857E260136AA /* bob-normal_360.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bob-normal_360.png"; sourceTree = "<group>"; };
 		AF7ABFBC75AEB2B133DE9E69 /* LogPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogPreferencesViewController.m; sourceTree = "<group>"; };
+		C7F9A3203D3786AE73F2653C /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,7 +152,7 @@
 				02D6F6E5191BE4CF00314446 /* backup-bobTests */,
 				02D6F6C0191BE4CF00314446 /* Frameworks */,
 				02D6F6BF191BE4CF00314446 /* Products */,
-				507C52DF7CFC472EAC2BEA97 /* Pods.xcconfig */,
+				0F5B0CC05F0AD52C79A4AE70 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -232,6 +237,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		0F5B0CC05F0AD52C79A4AE70 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A42A5DC8DDD337996BD1A14A /* Pods.debug.xcconfig */,
+				C7F9A3203D3786AE73F2653C /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		659F25DDC5BA2ADA9D726BDE /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -300,6 +314,8 @@
 		AF7AB43EF24159FBEC16C7E1 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				02BF14D41A06BC250017A693 /* bob-darkmode-normal_360.png */,
+				02BF14D51A06BC250017A693 /* bob-darkmode-retina_360.png */,
 				AF7AB92BDA4AD8AFCDF9F57D /* bob-retina_360.png */,
 				AF7ABF3940A2857E260136AA /* bob-normal_360.png */,
 				AF7AB7061B721770BCD22DB3 /* bob-selected_360.png */,
@@ -417,10 +433,12 @@
 				02D6F6CC191BE4CF00314446 /* InfoPlist.strings in Resources */,
 				02D6F6DA191BE4CF00314446 /* Images.xcassets in Resources */,
 				02D6F6D2191BE4CF00314446 /* Credits.rtf in Resources */,
+				02BF14D71A06BC250017A693 /* bob-darkmode-normal_360.png in Resources */,
 				02D6F6D8191BE4CF00314446 /* MainMenu.xib in Resources */,
 				AF7AB5C63AC4C801AAAADF9E /* bob-retina_360.png in Resources */,
 				AF7ABE87761A73514189BFDD /* bob-normal_360.png in Resources */,
 				AF7AB373073D815469BFB252 /* bob-selected_360.png in Resources */,
+				02BF14D81A06BC250017A693 /* bob-darkmode-retina_360.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -462,7 +480,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -622,7 +640,7 @@
 		};
 		02D6F6F0191BE4CF00314446 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 507C52DF7CFC472EAC2BEA97 /* Pods.xcconfig */;
+			baseConfigurationReference = A42A5DC8DDD337996BD1A14A /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -637,7 +655,7 @@
 		};
 		02D6F6F1191BE4CF00314446 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 507C52DF7CFC472EAC2BEA97 /* Pods.xcconfig */;
+			baseConfigurationReference = C7F9A3203D3786AE73F2653C /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;

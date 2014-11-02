@@ -53,12 +53,27 @@
     RACSignal *showSignal = [[self rac_signalForSelector:@selector(menuWillOpen:)] mapReplace:@(YES)];
     RACSignal *hideSignal = [[self rac_signalForSelector:@selector(menuDidClose:)] mapReplace:@(NO)];
     RAC(self.viewModel, statusBarVisible) = [RACSignal merge:@[showSignal, hideSignal]];
+
+    NSDistributedNotificationCenter *notificationCenter = [NSDistributedNotificationCenter defaultCenter];
+    RACSignal *styleSignal = [[notificationCenter rac_addObserverForName:@"AppleInterfaceThemeChangedNotification" object:nil] takeUntil:[self rac_willDeallocSignal]];
+    
+    RACSignal *statusBarCreationSignal = [RACObserve(self, statusItem) take:1];
+    RACSignal *isDarkModeStatusBarSignal = [[RACSignal merge:@[statusBarCreationSignal, styleSignal]] map:^id(id value) {
+        NSDictionary *dict = [[NSUserDefaults standardUserDefaults] persistentDomainForName:NSGlobalDomain];
+        id style = [dict objectForKey:@"AppleInterfaceStyle"];
+        BOOL darkModeOn = ( style && [style isKindOfClass:[NSString class]] && NSOrderedSame == [style caseInsensitiveCompare:@"dark"] );
+        return @(darkModeOn);
+    }];
+    
+    RAC(self.statusItem, image) = [isDarkModeStatusBarSignal map:^id(NSNumber *isDarkModeNumber) {
+        BOOL isDarkMode = [isDarkModeNumber boolValue];
+        return isDarkMode ? [NSImage imageNamed:@"bob-darkmode-normal_360.png"] : [NSImage imageNamed:@"bob-normal_360.png"];
+    }];
 }
 
 - (void)setupMenu
 {
     self.statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
-    self.statusItem.image = [NSImage imageNamed:@"bob-normal_360.png"];
     self.statusItem.alternateImage = [NSImage imageNamed:@"bob-selected_360.png"];
     self.statusItem.title = @"";
     self.statusItem.highlightMode = YES;
