@@ -16,9 +16,10 @@ Install [Tarsnap](http://www.tarsnap.com/) by either compiling it your self or t
 
 	brew install tarsnap
 
+If you have installed Tarsnap through Brew, you might need to do a symbolic link from `/usr/local/bin/tarsnap` to `/usr/bin/tarsnap`
+
 After that, follow the four steps on their [Getting Started](http://www.tarsnap.com/gettingstarted.html).
-	
-	
+
 Then you need to install [Tarsnapper](https://github.com/miracle2k/tarsnapper), e.g. with `easy_install`
 
 	easy_install tarsnapper
